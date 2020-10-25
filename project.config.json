@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "what-eat",
 	"description": "Front-end code of small program",
-	"appid": "touristappid",
+	"appid": "wx3e0cacd18dc1d3eb",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
