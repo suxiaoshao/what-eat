@@ -1,0 +1,21 @@
+.window-card {
+  $imageWidth: 25vw;
+  $allPadding: 20px;
+  $miniPadding: 15px;
+
+  .main {
+    padding: $allPadding;
+
+    image {
+      display: block;
+      width: $imageWidth;
+      height: $imageWidth;
+      border-radius: 8px;
+    }
+  }
+
+  .divider {
+    margin-left: calc(#{$imageWidth} + #{$allPadding+$miniPadding});
+    margin-right: $allPadding;
+  }
+}

@@ -1,0 +1,38 @@
+Date : 2020-11-01 13:28:53
+Directory : c:\code\code-area\study\what-eat\src
+Total : 8 files,  111 codes, 1 comments, 17 blanks, all 129 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |          2 |         66 |          0 |          5 |         71 |
+| TypeScript       |          3 |         26 |          1 |          9 |         36 |
+| HTML             |          1 |         19 |          0 |          1 |         20 |
+| SCSS             |          2 |          0 |          0 |          2 |          2 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                             | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                |          8 |        111 |          1 |         17 |        129 |
+| components                                                       |          1 |         29 |          0 |          2 |         31 |
+| pages                                                            |          3 |         40 |          0 |          5 |         45 |
+| pages\index                                                      |          3 |         40 |          0 |          5 |         45 |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                         | language         | code       | comment    | blank      | total      |
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\code\code-area\study\what-eat\src\app.config.ts               | TypeScript       |         11 |          0 |          1 |         12 |
+| c:\code\code-area\study\what-eat\src\app.scss                    | SCSS             |          0 |          0 |          1 |          1 |
+| c:\code\code-area\study\what-eat\src\app.tsx                      | TypeScript       |         12 |          1 |          7 |         20 |
+| c:\code\code-area\study\what-eat\src\components\login.tsx        | TypeScript React |         29 |          0 |          2 |         31 |
+| c:\code\code-area\study\what-eat\src\index.html                  | HTML             |         19 |          0 |          1 |         20 |
+| c:\code\code-area\study\what-eat\src\pages\index\index.config.ts | TypeScript       |          3 |          0 |          1 |          4 |
+| c:\code\code-area\study\what-eat\src\pages\index\index.scss      | SCSS             |          0 |          0 |          1 |          1 |
+| c:\code\code-area\study\what-eat\src\pages\index\index.tsx       | TypeScript React |         37 |          0 |          3 |         40 |
+| Total                                                            |                  |        111 |          1 |         17 |        129 |
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
