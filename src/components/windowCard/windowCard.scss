@@ -2,20 +2,82 @@
   $imageWidth: 25vw;
   $allPadding: 20px;
   $miniPadding: 15px;
+  $lineHeight: 32px;
+  $fontSize: 28px;
 
   .main {
     padding: $allPadding;
+    display: flex;
 
-    image {
-      display: block;
-      width: $imageWidth;
-      height: $imageWidth;
-      border-radius: 8px;
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
+      image {
+        display: block;
+        width: $imageWidth;
+        height: $imageWidth;
+        border-radius: 8px;
+      }
+
+      text {
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 32px;
+      }
+    }
+
+    .desc {
+      flex: 1 1 0;
+      margin-left: $miniPadding;
+      width: calc(#{$imageWidth} + #{$allPadding+$miniPadding});
+
+      .title-star {
+        display: flex;
+
+        .title {
+          font-size: 35px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1 1 0;
+        }
+
+        .star {
+          color: #f5b461;
+          font-weight: bold;
+        }
+      }
+
+      .desc-content {
+        margin-top: 10px;
+        font-size: $fontSize;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgba(0, 0, 0, 0.54);
+      }
+
+      .dish-list-feedback {
+        margin-top: 10px;
+        flex: 0 0 1;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 32px;
+
+        .dish {
+          margin: 8px 10px 0 0;
+        }
+      }
     }
   }
 
   .divider {
     margin-left: calc(#{$imageWidth} + #{$allPadding+$miniPadding});
     margin-right: $allPadding;
+    width: auto;
   }
 }
