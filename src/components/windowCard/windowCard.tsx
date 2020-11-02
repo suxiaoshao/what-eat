@@ -16,7 +16,7 @@ export default function WindowCard(props:WindowCardProps): JSX.Element {
   return (
     <View className='window-card'>
       <View className='main'>
-        <Image src='https://pic2.zhimg.com/50/v2-c2b82cbfbd74c2b012d5d1ee4fcb8c63_hd.jpg' />
+        <Image src={props.src} />
       </View>
       <AtDivider height={1} className='divider' />
     </View>

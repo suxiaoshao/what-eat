@@ -24,7 +24,14 @@ export default function Index(): JSX.Element {
   return (
     <View className='index'>
       <View className='window-list'>
-        <WindowCard />
+        <WindowCard
+          desc={''}
+          dishList={[]}
+          name={''}
+          src={'https://pic2.zhimg.com/50/v2-c2b82cbfbd74c2b012d5d1ee4fcb8c63_hd.jpg'}
+          star={5}
+          windowsId={1}
+        />
       </View>
     </View>
   );
