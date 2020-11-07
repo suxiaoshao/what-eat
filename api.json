@@ -7,7 +7,13 @@
       "desc": "string",
       "mapSrc": "string",
       "canteen": "string",
-      "star": "number"
+      "star": "number",
+      "dish": [
+        {
+          "name": "string",
+          "id": "number"
+        }
+      ]
     },
     "query": {
       "type": "number",
@@ -44,7 +50,9 @@
       "mapSrc": "string",
       "canteen": "string",
       "star": "number",
-      "tags": ["number"],
+      "tags": [
+        "number"
+      ],
       "dish": [
         {
           "name": "string",
@@ -53,81 +61,75 @@
         }
       ]
     },
-
     "query": {
       "windowId": "number",
       "userId": "number"
     }
   },
-  "/dish":{
-      "data":{
-        "name": "string",
-        "id": "number",
-        "price": "number",
-        "tags": [
-          {
-            "name": "string",
-            "tagId": "number",
-            "count": "number",
-            "markedTag":"boolean"
-          }
-        ],
-        "stars": ["number"],
-        "starAvg":"number",
-        "commend":[
-            {
-                "name": "string",
-                "id": "number",
-                "price": "number"
-              }
-        ]
-      }
-
+  "/dish": {
+    "data": {
+      "name": "string",
+      "id": "number",
+      "price": "number",
+      "tags": [
+        {
+          "name": "string",
+          "tagId": "number",
+          "count": "number",
+          "markedTag": "boolean"
+        }
+      ],
+      "stars": [
+        "number"
+      ],
+      "starAvg": "number",
+      "commend": [
+        {
+          "name": "string",
+          "id": "number",
+          "price": "number"
+        }
+      ]
+    }
   },
-  "/updateDishTag":{
-      "queryPost":{
-          "userId":"number",
-          "dishId":"number",
-          "tagId":"number"
-      },
-      "data":{
-        "name": "string",
-        "tagId": "number",
-        "count": "number",
-        "markedTag":"boolean"
-      }
-  },
-  "/comment":{
-      "queryPost":{
-          "userId":"number",
-          "dishId":"number",
-          "star":"number"
-      },
-      "data":{
-
-      }
-
-  },
-
-  "/windowFeedback":{
-      "query":{
-          "userId":"number",
-          "windowId":"number",
-          "content":"string",
-          "dishId":"null|number"
-      },
-      "data":{
-
-      }
-  },
-
-  "/myFeedback"{
-    "query":{
-        "userId":"number",
-        "content":"string"
+  "/updateDishTag": {
+    "queryPost": {
+      "userId": "number",
+      "dishId": "number",
+      "tagId": "number"
     },
-    "data":{
-        
+    "data": {
+      "name": "string",
+      "tagId": "number",
+      "count": "number",
+      "markedTag": "boolean"
+    }
+  },
+  "/comment": {
+    "queryPost": {
+      "userId": "number",
+      "dishId": "number",
+      "star": "number"
+    },
+    "data": {
+    }
+  },
+  "/windowFeedback": {
+    "query": {
+      "userId": "number",
+      "windowId": "number",
+      "content": "string",
+      "dishId": "null|number"
+    },
+    "data": {
+    }
+  },
+  "/myFeedback": {
+    "query": {
+      "userId": "number",
+      "content": "string"
+    },
+    "data": {
     }
   }
 }
