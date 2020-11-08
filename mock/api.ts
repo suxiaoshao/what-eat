@@ -84,21 +84,99 @@ export default {
     }),
   },
 
-  'GET /getInfo': {
-    data: mock.mock({
-      'tags': new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'tagId|1-1000': 1,
-          tagname: mock.Random.csentence(5),
-        });
-      }),
-      'canteens': new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'canteenId|1-1000': 1,
-          canteenname: mock.Random.csentence(5),
-        });
-      }),
+  // 'GET /getInfo': {
+  //   data: mock.mock({
+  //     'tags': new Array(10).fill(1).map(() => {
+  //       return mock.mock({
+  //         'tagId|1-1000': 1,
+  //         tagname: mock.Random.csentence(5),
+  //       });
+  //     }),
+  //     'canteens': new Array(10).fill(1).map(() => {
+  //       return mock.mock({
+  //         'canteenId|1-1000': 1,
+  //         canteenname: mock.Random.csentence(5),
+  //       });
+  //     }),
+  //   })
+  // } ,
+  'GET /updateInfo':{
+    data:mock.mock({
+        'userId|1-1000':7,
+        'preferredList':new Array(10).fill(1).map(() =>{
+          return mock.mock({
+            'tagId|1-100':8,
+            'tagName':mock.Random.csentence(5),
+          });
+        }),
+        'avoidList':new Array(10).fill(1).map(() =>{
+          return mock.mock({
+            'tagId|1-100':8,
+            'tagName':mock.Random.csentence(5)
+          });
+        }),
     })
-  } 
+  },
+ 'GET /getInfo':{
+    data:mock.mock({
+      'data':new Array(1).fill(1).map(()=>{
+        return mock.mock({
+          'preferredList':new Array(10).fill(1).map(() =>{
+            return mock.mock({
+              'tagId|1-100':8,
+              'tagName':mock.Random.csentence(5),
+            });
+          }),
+          'avoidList':new Array(10).fill(1).map(() =>{
+            return mock.mock({
+              'tagId|1-100':8,
+              'tagName':mock.Random.csentence(5)
+            });
+          })
+        })  
+     })
+    })
+ },
+ 'GET /getMarkedWindow':{
+   data:mock.mock({
+     'data':new Array(10).fill(1).map(()=>{
+       return mock.mock({
+        'windowId':new Array(1).fill(1).map(()=>{
+          return mock.mock({
+            'windowId|1-1000':99,
+            'windowName':mock.Random.csentence(5),
+            'pngSrc':mock.Random. image(),
+            'description':mock.Random.csentence(50),
+            'canteeName':mock.Random.csentence(5),
+            'star|1-5':2,
+            'dish':new Array(10).fill(1).map(()=>{
+              return mock.mock({
+                'name':mock.Random.csentence(5),
+                'id|1=1000':99
+              })
+            })
+          })
+        })
+       })
+      
+     })
+   })
+ },
+ 'GET /favorites':{
+   data:mock.mock({
+     'data':new Array(10).fill(1).map(()=>{
+       return mock.mock({
+         'dishList':new Array(10).fill(1).map(()=>{
+           return mock.mock({
+             'dishId|1-1000':99,
+             'dishName':mock.Random.csentence(5),
+             'price|1-100':14,
+             'star|1-5':2
+           })
+         })
+       })
+     })
+   })
+ }
 };
 
