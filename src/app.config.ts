@@ -23,6 +23,7 @@ const config: Config = {
         text: '我的',
       },
     ],
+    custom:true
   },
 };
 export default config;

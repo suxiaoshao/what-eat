@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { View } from '@tarojs/components';
 import { AtSearchBar } from 'taro-ui';
 import 'taro-ui/dist/style/components/button.scss';
 import './index.scss';
+import Taber from "../../components/tabar/taber";
 
 export default function Index(): JSX.Element {
   return (
-    <View className='index'>
+    <Taber className='index'>
       <AtSearchBar value='' onChange={() => {}} />
-    </View>
+    </Taber>
   );
 }
