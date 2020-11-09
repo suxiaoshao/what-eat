@@ -177,6 +177,32 @@ export default {
        })
      })
    })
+ },
+ 'GET /dish/getDishInfo': {
+ data: mock.mock({
+ dishName: mock.Random.csentence(5),
+ 'price|1-100':1,
+ 'userStar|-1-5.1':2,
+ 'star|1-5.1':2,
+ 'starNum': new Array(5).fill(1).map(() => {
+          return mock.Random.natural(1,5)
+           }),
+ 'tagList': new Array(10).fill(1).map(() => {
+             return mock.mock({
+               'tagId|1-1000': 1,
+               'tagNum|1-100': 1,
+               'hasTagged|1': true,
+             });
+    })
+   })
+  },
+ 'POST /user/feedback':{
+ },
+ 'POST /updateMarkedWindow':{
+ },
+ 'POST /dish/updateDishStar':{
+ "data":{
  }
-};
+ }
 
+ };
