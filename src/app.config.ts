@@ -7,7 +7,13 @@ const config: Config = {
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'white',
   },
-  pages: ['pages/index/index', 'pages/filter/index', 'pages/my/index','pages/common/authorization/index'],
+  pages: [
+    'pages/index/index',
+    'pages/filter/index',
+    'pages/my/index',
+    'pages/common/authorization/index',
+    '/pages/common/window/index',
+  ],
   tabBar: {
     list: [
       {
@@ -23,7 +29,7 @@ const config: Config = {
         text: '我的',
       },
     ],
-    custom:true
+    custom: true,
   },
 };
 export default config;
