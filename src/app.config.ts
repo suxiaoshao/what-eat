@@ -12,7 +12,9 @@ const config: Config = {
     'pages/filter/index',
     'pages/my/index',
     'pages/common/authorization/index',
-    '/pages/common/window/index',
+    'pages/common/window/index',
+    'pages/common/favorites/index',
+    'pages/common/feedback/index',
   ],
   tabBar: {
     list: [
