@@ -2,28 +2,12 @@ import * as React from 'react';
 import { View } from '@tarojs/components';
 import { AtSegmentedControl } from 'taro-ui';
 import { useState } from 'react';
-import { getUserInfo, redirectTo } from '@tarojs/taro';
 import './index.scss';
 import WindowCard from '../../components/windowCard/windowCard';
 import Taber from '../../components/tabar/taber';
-import { ThisUserInfo, useUserInfo } from '../../util/store/user';
 
 export default function Index(): JSX.Element {
   const [tab, setTab] = useState<number>(0);
-  const [, setUserInfo] = useUserInfo();
-  React.useEffect(() => {
-    getUserInfo()
-      .then((e) => {
-        const userInfo: ThisUserInfo = {
-          userName: e.userInfo.nickName,
-          userAvatars: e.userInfo.avatarUrl,
-        };
-        setUserInfo(userInfo);
-      })
-      .catch(() => {
-        redirectTo({ url: '/pages/common/authorization/index' });
-      });
-  }, [setUserInfo]);
   return (
     <Taber className='index'>
       <AtSegmentedControl

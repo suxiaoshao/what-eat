@@ -9,7 +9,7 @@ export default function Taber(props: { children: React.ReactNode; className: str
   const router = useRouter();
   return (
     <View className='tab-bar-main'>
-      <View className={`page-main ${props.children}`}>{props.children}</View>
+      <View className={`page-main ${props.className}`}>{props.children}</View>
       <AtTabBar
         selectedColor='#ea2c62'
         current={routerList.indexOf(router.path)}

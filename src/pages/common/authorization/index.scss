@@ -4,11 +4,11 @@
   flex-direction: column;
 
   .image {
-    flex: 0 0 37vh;
+    flex: 0 0 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #66bb6a, #9ad3bc);
+    background: linear-gradient(to bottom, #66bb6a, #a8dda8);
 
     .src {
       width: 400px;
@@ -23,6 +23,12 @@
     justify-content: space-around;
     align-items: center;
 
+    .desc {
+      margin-top: 10px;
+      font-size: 35px;
+      color: #00000070;
+    }
+
     .info {
       display: flex;
       flex-direction: column;
@@ -32,11 +38,22 @@
         font-size: 50px;
         font-weight: bold;
       }
+    }
 
-      .desc {
-        margin-top: 10px;
-        font-size: 35px;
-        color: #00000090;
+    .features {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+
+      .features-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon {
+          width: 100px;
+          height: 100px;
+        }
       }
     }
 
