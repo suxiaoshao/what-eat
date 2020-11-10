@@ -1,13 +1,13 @@
 import { createUseStoreFunc } from './store';
 
-export interface useUserInfo {
+export interface ThisUserInfo {
   userName: string;
   userAvatars: string;
-  userId: number;
 }
 
-export const useUserInfo = createUseStoreFunc<useUserInfo>({
+export const useUserInfo = createUseStoreFunc<ThisUserInfo>({
   userAvatars: '',
   userName: '',
-  userId: -1,
 });
+
+export const useUserId = createUseStoreFunc<number>(-1);

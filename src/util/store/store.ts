@@ -33,7 +33,6 @@ export function createStore<Data>(
     changeDataList = changeDataList.filter((value) => {
       return value.flag !== flag;
     });
-    console.log(changeDataList);
   };
   const getData = (): Data => {
     return thisData;
