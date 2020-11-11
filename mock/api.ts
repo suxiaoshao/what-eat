@@ -8,7 +8,7 @@ export default {
     }),
   },
 
-  'GET /window/dishRecommend': {//首页窗口推荐接口
+  'GET /window/dishRecommend': {
     data: mock.mock({
       'windowId|1-1000': 1,
       windowName: mock.Random.csentence(3, 8),
@@ -118,8 +118,6 @@ export default {
   },
   'GET /user/getInfo': {
     data: mock.mock({
-      //data: new Array(1).fill(1).map(() => {
-        //return mock.mock({
           preferredList: new Array(10).fill(1).map(() => {
             return mock.mock({
               'tagId|1-100': 8,
@@ -132,14 +130,10 @@ export default {
               tagName: mock.Random.csentence(5),
             });
           }),
-        //});
-      //}),
     }),
   },
   'GET /window/getMarkedWindow': {
     data: mock.mock({
-      //data: new Array(10).fill(1).map(() => {
-        //return mock.mock({
           windowList: new Array(10).fill(1).map(() => {
             return mock.mock({
               'windowId|1-1000': 99,
@@ -156,14 +150,10 @@ export default {
               }),
             });
           }),
-        //});
-      //}),
     }),
   },
   'GET /dish/favorites': {
     data: mock.mock({
-      //data: new Array(10).fill(1).map(() => {
-        //return mock.mock({
           dishList: new Array(10).fill(1).map(() => {
             return mock.mock({
               'dishId|1-1000': 99,
@@ -172,8 +162,6 @@ export default {
               'star|1-5.1': 2,
             });
           }),
-        //});
-      //}),
     }),
   },
   'GET /dish/getDishInfo': {
