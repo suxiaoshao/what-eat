@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, Text, View } from '@tarojs/components';
-import { AtButton } from 'taro-ui';
+import { AtButton, AtTag } from 'taro-ui';
 import './windowCard.scss';
 
 interface WindowCardProps {
@@ -16,7 +16,7 @@ interface WindowCardProps {
 export default function WindowCard(props: WindowCardProps): JSX.Element {
   return (
     <View className='window-card'>
-      <View className='main'>
+      <View className='window-main'>
         <View className='left'>
           <Image src={props.src} />
         </View>
@@ -34,9 +34,9 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
       </View>
       <View className='dish-list-feedback'>
         {props.dishList.map((value) => (
-          <AtButton className='dish' type='primary' size='small' key={value.dishId}>
+          <AtTag className='dish' size='small' key={value.dishId} active>
             {value.name}
-          </AtButton>
+          </AtTag>
         ))}
       </View>
     </View>

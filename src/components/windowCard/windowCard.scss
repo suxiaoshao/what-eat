@@ -1,13 +1,19 @@
 .window-card {
-  $imageWidth: 25vw;
-  $allPadding: 20px;
-  $miniPadding: 15px;
-  $lineHeight: 32px;
-  $fontSize: 28px;
+  $allPadMar: 30px;
+  $allMar: 15px;
 
-  padding: $allPadding;
+  padding: $allPadMar - $allMar;
+  margin: $allMar;
+  border-radius: 10px;
+  background-color: #ffffff;
 
-  .main {
+  .window-main {
+    $imageWidth: 25vw;
+    $miniPadding: 15px;
+    $lineHeight: 32px;
+    $fontSize: 28px;
+
+    background-color: #ffffff;
     display: flex;
 
     .left {
@@ -32,7 +38,7 @@
     .desc {
       flex: 1 1 0;
       margin-left: $miniPadding;
-      width: calc(#{$imageWidth} + #{$allPadding+$miniPadding});
+      width: calc(#{$imageWidth} + #{$allPadMar+$miniPadding});
 
       .title-star {
         margin-top: 15px;

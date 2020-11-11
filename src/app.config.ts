@@ -3,7 +3,7 @@ import { Config } from '@tarojs/taro';
 const config: Config = {
   window: {
     backgroundTextStyle: 'dark',
-    navigationBarBackgroundColor: '#ec524b',
+    navigationBarBackgroundColor: '#D32F2F',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'white',
   },
