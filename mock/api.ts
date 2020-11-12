@@ -8,21 +8,25 @@ export default {
     }),
   },
 
-  'GET /window/dishRecommend': {
-    data: mock.mock({
-      'windowId|1-1000': 1,
-      windowName: mock.Random.csentence(3, 8),
-      pngSrc: mock.Random.image('150x150'),
-      description: mock.Random.cparagraph(5, 50),
-      'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
-      'star|1-5.1': 1,
-      dish: new Array(10).fill(1).map(() => {
+  'GET /window/recommend': {
+    data: {
+      windowList:new Array(10).fill(1).map(()=>{
         return mock.mock({
-          'dishid|1-1000': 1,
-          dishName: mock.Random.csentence(5),
-        });
-      }),
-    }),
+          'windowId|1-1000': 1,
+          windowName: mock.Random.csentence(3, 8),
+          pngSrc: mock.Random.image('150x150'),
+          description: mock.Random.cparagraph(3, 7),
+          'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
+          'star|1-5.1': 1,
+          dish: new Array(3).fill(1).map(() => {
+            return mock.mock({
+              'dishid|1-1000': 1,
+              dishName: mock.Random.csentence(5),
+            });
+          }),
+        })
+      })
+    }
   },
 
   'GET /user/search': {
@@ -30,9 +34,9 @@ export default {
       searchlist: new Array(1).fill(1).map(() => {
         return mock.mock({
       'id|1-1000': 2,
-      name: mock.Random.csentence(5),
+      name: mock.Random.csentence(3,7),
       pngSrc: mock.Random.image(),
-      desc: mock.Random.cparagraph(5, 50),
+      desc: mock.Random.cparagraph(3, 7),
       canteen: mock.Random.csentence(5),
       'star|1-5.1': 2,
         });
@@ -48,7 +52,7 @@ export default {
 
   'POST /dish/updateDishTag': {
     data: mock.mock({
-      dishName: mock.Random.csentence(5),
+      dishName: mock.Random.csentence(3,7),
       'tagId|1-1000': 2,
       'count|1-1000': 1,
       'markedTag|1': true,
@@ -62,7 +66,7 @@ export default {
           'windowId|1-1000': 2,
           windowName: mock.Random.csentence(5),
           pngSrc: mock.Random.image(),
-          description: mock.Random.cparagraph(5, 50),
+          description: mock.Random.cparagraph(3, 7),
           mapSrc: mock.Random.image(),
           'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
           'star|1-5.1': 2,
@@ -72,7 +76,7 @@ export default {
           'isMarked|1': true,
           dish: new Array(10).fill(1).map(() => {
             return mock.mock({
-              dishName: mock.Random.csentence(5),
+              dishName: mock.Random.csentence(3,7),
               'dishId|1-1000': 1,
               'price|1-100': 1,
               'star|1-5.1': 2,

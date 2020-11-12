@@ -13,6 +13,6 @@ export interface GetdishgetDishInfoData {
   }[];
 }
 
-export async function getUserInfo(dishId: number): Promise<GetdishgetDishInfoData> {
+export async function getDishgetDishInfo(dishId: number): Promise<GetdishgetDishInfoData> {
   return await httpGet<GetdishgetDishInfoData, { dishId: number }>('/dish/getDishInfo', { dishId: dishId });
 }

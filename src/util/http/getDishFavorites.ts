@@ -10,6 +10,6 @@ export interface GetdishfavoritesData {
   }[];
 }
 
-export async function getUserInfo(userId:number): Promise<GetdishfavoritesData> {
+export async function getDishFavorites(userId:number): Promise<GetdishfavoritesData> {
   return await httpGet<GetdishfavoritesData, { userId:number }>('/dish/favorites', { userId:userId });
 }

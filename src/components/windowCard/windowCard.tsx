@@ -9,7 +9,7 @@ interface WindowCardProps {
   name: string;
   desc: string;
   windowsId: number;
-  dishList: { name: string; dishId: number }[];
+  dishList: { dishName: string; dishId: number }[];
   canteen: string;
 }
 
@@ -35,7 +35,7 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
       <View className='dish-list-feedback'>
         {props.dishList.map((value) => (
           <AtTag className='dish' size='small' key={value.dishId} active>
-            {value.name}
+            {value.dishName}
           </AtTag>
         ))}
       </View>

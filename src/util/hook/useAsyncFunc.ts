@@ -12,9 +12,9 @@ export type AsyncState<T> = SuccessAsyncState<T> | ErrorAsyncState | LoadingAsyn
 
 export type AsyncReturn<T> = [() => void, ...AsyncState<T>];
 
-export default function useAsyncFunc<T>(
+export function useAsyncFunc<T>(
   fn: AsyncFunc<T>,
-  deps: DependencyList,
+  deps: DependencyList = [],
   initState: AsyncState<T> = [true, undefined, undefined],
 ): AsyncReturn<T> {
   const [asyncState, setAsyncState] = useState<AsyncState<T>>(initState);

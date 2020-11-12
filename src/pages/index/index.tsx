@@ -1,13 +1,24 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
-import { AtSegmentedControl } from 'taro-ui';
+import { AtLoadMore, AtSegmentedControl } from 'taro-ui';
 import { useState } from 'react';
 import './index.scss';
 import WindowCard from '../../components/windowCard/windowCard';
 import Taber from '../../components/tabar/taber';
+import { useAsyncFunc } from '../../util/hook/useAsyncFunc';
+import { getWindowRecommend, GetWindowDishRecommendData } from '../../util/http/getWindowRecommend';
 
 export default function Index(): JSX.Element {
   const [tab, setTab] = useState<number>(0);
+  const [fn, loading, errorString, data] = useAsyncFunc<GetWindowDishRecommendData>(async () => {
+    return await getWindowRecommend(1, 1);
+  });
+  React.useEffect(() => {
+    fn();
+  }, []);
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <Taber className='index'>
       <View className='main'>
@@ -18,21 +29,22 @@ export default function Index(): JSX.Element {
             setTab(index);
           }}
         />
-        <View className='window-list'>
-          <WindowCard
-            desc='一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的一家好吃的'
-            dishList={[
-              { dishId: 1, name: '饭饭饭饭饭饭' },
-              { dishId: 2, name: '菜菜菜菜菜菜' },
-              { dishId: 3, name: '肉肉肉肉肉肉肉' },
-            ]}
-            name='饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店饭店'
-            src='https://pic2.zhimg.com/50/v2-c2b82cbfbd74c2b012d5d1ee4fcb8c63_hd.jpg'
-            star={3.7}
-            windowsId={1}
-            canteen='玫瑰园'
-          />
-        </View>
+        {loading || errorString != undefined ? (
+          <AtLoadMore moreText={`${errorString},请点击重试`} status={loading ? 'loading' : 'more'} />
+        ) : (
+          data.windowList.map((value) => (
+            <WindowCard
+              desc={value.description}
+              canteen={value.canteenName}
+              src={value.pngSrc}
+              dishList={value.dish}
+              name={value.windowName}
+              star={value.star}
+              windowsId={value.windowId}
+              key={value.windowId}
+            />
+          ))
+        )}
       </View>
     </Taber>
   );

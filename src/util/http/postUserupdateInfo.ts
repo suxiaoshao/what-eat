@@ -12,6 +12,6 @@ export interface PostUserupdateInfoData {
   }[];
 }
 
-export async function postUserlogin(userId: number): Promise<PostUserupdateInfoData> {
+export async function postUserupdateInfo(userId: number): Promise<PostUserupdateInfoData> {
   return await httpPost<PostUserupdateInfoData, { userId: number }>('/user/updateInfo', { userId: userId });
 }

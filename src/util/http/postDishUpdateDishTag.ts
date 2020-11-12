@@ -7,7 +7,7 @@ export interface PostDishUpdateDishTagData {
   markedTag: boolean;
 }
 
-export async function postUserlogin(userId: number, dishId: number, tagId: number): Promise<PostDishUpdateDishTagData> {
+export async function postDishUpdateDishTag(userId: number, dishId: number, tagId: number): Promise<PostDishUpdateDishTagData> {
   return await httpPost<PostDishUpdateDishTagData, { userId: number; dishId: number; tagId: number }>(
     '/dish/updateDishTag',
     { userId: userId, dishId: dishId, tagId: tagId },

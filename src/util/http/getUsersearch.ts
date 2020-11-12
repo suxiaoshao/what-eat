@@ -15,7 +15,7 @@ export interface GetUsersearchData {
   }[];
 }
 
-export async function getUserInfo(
+export async function getUsersearch(
   searchName: string,
   userId: number,
   tagList: [],

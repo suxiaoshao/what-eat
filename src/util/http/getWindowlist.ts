@@ -20,7 +20,7 @@ export interface GetWindowlistData {
   }[];
 }
 
-export async function getUserInfo(windowId: number, userId: number): Promise<GetWindowlistData> {
+export async function getWindowlist(windowId: number, userId: number): Promise<GetWindowlistData> {
   return await httpGet<GetWindowlistData, { windowId: number; userId: number }>('/window/list', {
     windowId: windowId,
     userId: userId,
