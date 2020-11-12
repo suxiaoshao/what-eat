@@ -11,6 +11,6 @@ export interface GetUserInfoData {
   }[];
 }
 
-export async function getUserInfo(userId: number): Promise<[undefined, GetUserInfoData] | [string, undefined]> {
+export async function getUserInfo(userId: number): Promise<GetUserInfoData> {
   return await httpGet<GetUserInfoData, { userId: number }>('/user/getInfo', { userId: userId });
 }

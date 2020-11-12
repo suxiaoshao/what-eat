@@ -16,6 +16,6 @@ export interface GetWindowgetMarkedWindowData {
   }[];
 }
 
-export async function getUserInfo(userId: number): Promise<[undefined, GetWindowgetMarkedWindowData] | [string, undefined]> {
-  return await httpGet<GetWindowgetMarkedWindowData, { userId: number }>('/window/getMarkedWindow', {userId: userId,});
+export async function getUserInfo(userId: number): Promise<GetWindowgetMarkedWindowData> {
+  return await httpGet<GetWindowgetMarkedWindowData, { userId: number }>('/window/getMarkedWindow', { userId: userId });
 }

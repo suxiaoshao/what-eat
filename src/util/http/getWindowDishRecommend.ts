@@ -11,13 +11,9 @@ export interface GetWindowDishRecommendData {
     dishid: number;
     dishName: string;
   }[];
-  
 }
 
-export async function getUserInfo(
-  type: number,
-  userId: number,
-): Promise<[undefined, GetWindowDishRecommendData] | [string, undefined]> {
+export async function getUserInfo(type: number, userId: number): Promise<GetWindowDishRecommendData> {
   return await httpGet<GetWindowDishRecommendData, { type: number; userId: number }>('/window/dishRecommend', {
     type: type,
     userId: userId,

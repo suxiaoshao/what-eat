@@ -16,8 +16,8 @@ const config: Config = {
     'pages/common/dish/index',
     'pages/common/feedback/index',
     'pages/common/favorites/index',
-    'pages/common/updatetag/index',
-    'pages/common/markedwindow/index',
+    'pages/common/updateTag/index',
+    'pages/common/markedWindow/index',
   ],
   tabBar: {
     list: [

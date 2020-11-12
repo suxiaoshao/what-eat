@@ -11,6 +11,6 @@ export interface GetsystemgetInfoData {
   }[];
 }
 
-export async function getUserInfo(): Promise<[undefined, GetsystemgetInfoData] | [string, undefined]> {
-  return await httpGet<GetsystemgetInfoData, {  }>('/system/getInfo', {  });
+export async function getUserInfo(): Promise<GetsystemgetInfoData> {
+  return await httpGet<GetsystemgetInfoData, {}>('/system/getInfo', {});
 }
