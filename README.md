@@ -63,7 +63,7 @@ yarn
 
 再输入
 
-```
+```bash
 yarn dev:weapp
 ```
 
@@ -72,3 +72,22 @@ yarn dev:weapp
 ![示例图](https://ftp.bmp.ovh/imgs/2020/10/1a8f42e29bfca6b6.png)
 
 说明以上操作全部成功
+
+## taro 路由跳转问题
+
+### taro 路由概念
+
+taro 定义一个页面就是在 app.config.ts 中添加一个 pages 字段添加页面组件的组件文件夹(通常是 .tsx 文件)
+
+taro 页面分为 普通页面和 tabBar 页面,tabBar 页面就是 app.config.ts 中 tabBar 下添加的页面,在我们的项目中 tabBar 页面就是,my/index/filter 这几个
+
+跳转至普通页面需要用到 Taro.navigateTo
+
+需要这样导入使用
+
+```typescript
+import {navigateTo} from '@taro/taro'
+
+navigateTo({url:'/pages/common/markedWindow/index'})
+// url 就是跳转到页面的路径,注意需要在 pages 前面加上 /
+```

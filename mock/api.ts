@@ -14,7 +14,7 @@ export default {
         return mock.mock({
           'windowId|1-1000': 1,
           windowName: mock.Random.csentence(3, 8),
-          pngSrc: mock.Random.image('150x150'),
+          pngSrc: 'https://pic2.zhimg.com/80/v2-91a8a0cd17f264f52b9d0e9d7ec0e712_720w.jpg?source=1940ef5c',
           description: mock.Random.cparagraph(3, 7),
           'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
           'star|1-5.1': 1,
@@ -65,9 +65,9 @@ export default {
         return mock.mock({
           'windowId|1-1000': 2,
           windowName: mock.Random.csentence(5),
-          pngSrc: mock.Random.image(),
+          pngSrc: 'https://pic2.zhimg.com/80/v2-91a8a0cd17f264f52b9d0e9d7ec0e712_720w.jpg?source=1940ef5c',
           description: mock.Random.cparagraph(3, 7),
-          mapSrc: mock.Random.image(),
+          mapSrc: 'https://pic3.zhimg.com/80/v2-0158fd3a40f3396ec766aec48b8a21da_720w.jpg',
           'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
           'star|1-5.1': 2,
           tags: new Array(5).fill(1).map(() => {
@@ -142,7 +142,7 @@ export default {
             return mock.mock({
               'windowId|1-1000': 99,
               windowName: mock.Random.csentence(5),
-              pngSrc: mock.Random.image(),
+              pngSrc: 'https://pic2.zhimg.com/80/v2-91a8a0cd17f264f52b9d0e9d7ec0e712_720w.jpg?source=1940ef5c',
               description: mock.Random.cparagraph(5, 50),
               canteeName: mock.Random.csentence(5),
               'star|1-5.1': 2,

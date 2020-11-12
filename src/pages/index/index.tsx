@@ -32,18 +32,7 @@ export default function Index(): JSX.Element {
         {loading || errorString != undefined ? (
           <AtLoadMore moreText={`${errorString},请点击重试`} status={loading ? 'loading' : 'more'} />
         ) : (
-          data.windowList.map((value) => (
-            <WindowCard
-              desc={value.description}
-              canteen={value.canteenName}
-              src={value.pngSrc}
-              dishList={value.dish}
-              name={value.windowName}
-              star={value.star}
-              windowsId={value.windowId}
-              key={value.windowId}
-            />
-          ))
+          data.windowList.map((value) => <WindowCard {...value} key={value.windowId} />)
         )}
       </View>
     </Taber>

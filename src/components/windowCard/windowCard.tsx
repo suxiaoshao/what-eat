@@ -4,13 +4,13 @@ import { AtButton, AtTag } from 'taro-ui';
 import './windowCard.scss';
 
 interface WindowCardProps {
-  src: string;
+  pngSrc: string;
   star: number;
-  name: string;
-  desc: string;
-  windowsId: number;
-  dishList: { dishName: string; dishId: number }[];
-  canteen: string;
+  windowName: string;
+  description: string;
+  windowId: number;
+  dish: { dishName: string; dishId: number }[];
+  canteenName: string;
 }
 
 export default function WindowCard(props: WindowCardProps): JSX.Element {
@@ -18,22 +18,22 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
     <View className='window-card'>
       <View className='window-main'>
         <View className='left'>
-          <Image src={props.src} />
+          <Image src={props.pngSrc} />
         </View>
         <View className='desc'>
           <View className='title-star'>
-            <Text className='title'>{props.name}</Text>
+            <Text className='title'>{props.windowName}</Text>
             <AtButton size='small'>窗口反馈</AtButton>
           </View>
           <View className='title-star'>
-            <Text className='canteen'>{props.canteen}</Text>
+            <Text className='canteen'>{props.canteenName}</Text>
             <Text className='star'>{props.star}分</Text>
           </View>
-          <View className='desc-content'>{props.desc}</View>
+          <View className='desc-content'>{props.description}</View>
         </View>
       </View>
       <View className='dish-list-feedback'>
-        {props.dishList.map((value) => (
+        {props.dish.map((value) => (
           <AtTag className='dish' size='small' key={value.dishId} active>
             {value.dishName}
           </AtTag>

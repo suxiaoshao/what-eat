@@ -2,7 +2,7 @@
 
 Date : 2020-11-01 13:28:53
 
-Directory c:\code\code-area\study\what-eat\src
+Directory c:\code\code-area\study\what-eat\pngSrc
 
 Total : 8 files,  111 codes, 1 comments, 17 blanks, all 129 lines
 
