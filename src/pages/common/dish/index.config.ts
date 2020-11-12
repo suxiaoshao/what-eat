@@ -1,7 +1,7 @@
 import { PageConfig } from '@tarojs/taro';
 
 const config: PageConfig = {
-  navigationBarTitleText: '最爱的菜',
+  navigationBarTitleText: '菜品',
   disableScroll: true,
 };
 export default config; 
