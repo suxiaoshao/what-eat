@@ -1,0 +1,10 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    .filter-search {
+        flex: 0 0 auto;
+    }
+    .filter-content {
+      flex: 1 1 0;
+    }
+  }
