@@ -6,8 +6,10 @@ import Taber from "../../components/tabar/taber";
 
 export default function Index(): JSX.Element {
   return (
-    <Taber className='index'>
-      <AtSearchBar value='' onChange={() => {}} />
+    <Taber className='filter'>
+      <AtSearchBar className='filter-search' value='' onChange={() => { }} />
+      <view className='filter-content'></view>
     </Taber>
+    
   );
 }
