@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Image, Text, View } from '@tarojs/components';
 import { AtButton, AtTag } from 'taro-ui';
+import { navigateTo } from '@tarojs/taro';
 import './windowCard.scss';
 
 interface WindowCardProps {
@@ -15,7 +16,12 @@ interface WindowCardProps {
 
 export default function WindowCard(props: WindowCardProps): JSX.Element {
   return (
-    <View className='window-card'>
+    <View
+      className='window-card'
+      onClick={() => {
+        navigateTo({url: `/pages/common/window/index?windowId=${props.windowId}`}).then();
+      }}
+    >
       <View className='window-main'>
         <View className='left'>
           <Image src={props.pngSrc} />

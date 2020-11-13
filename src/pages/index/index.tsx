@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { AtTabs, AtTabsPane } from 'taro-ui';
+import { AtTabs } from 'taro-ui';
 import { useState } from 'react';
+import { View } from '@tarojs/components';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import IndexList from './indexList';
-import { View } from '@tarojs/components';
 
 export default function Index(): JSX.Element {
   const [tab, setTab] = useState<number>(0);

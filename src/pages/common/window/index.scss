@@ -1,11 +1,15 @@
 .window {
+
   .window-desc {
   }
+
   .window-jt {
     display: flex;
+
     .tag-list {
       flex: 0 0 auto;
     }
+
     .dish-list {
       flex: 1 1 0;
     }

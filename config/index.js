@@ -32,7 +32,7 @@ const config = {
       url: {
         enable: true,
         config: {
-          limit: 1024 // 设定转换尺寸上限
+          limit: 1 // 设定转换尺寸上限
         }
       },
       cssModules: {
