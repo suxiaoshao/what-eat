@@ -1,0 +1,23 @@
+.navigation {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .navigation-main {
+    flex: 1 1 0;
+  }
+
+  .navigation-bar {
+    background-color: #d32f2f;
+
+    .navigation-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .navigation-back {
+        margin-left: 7px;
+      }
+    }
+  }
+}

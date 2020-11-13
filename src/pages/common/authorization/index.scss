@@ -1,0 +1,72 @@
+.authorization {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .image {
+    flex: 0 0 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #66bb6a, #a8dda8);
+
+    .src {
+      width: 400px;
+      height: 300px;
+    }
+  }
+
+  .content {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .desc {
+      margin-top: 10px;
+      font-size: 35px;
+      color: #00000070;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        font-size: 50px;
+        font-weight: bold;
+      }
+    }
+
+    .features {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+
+      .features-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+
+    .button {
+      width: 80%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .button-content {
+        font-size: 40px;
+      }
+    }
+  }
+}

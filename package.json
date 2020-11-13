@@ -49,7 +49,9 @@
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@tarojs/mini-runner": "3.0.15",
+    "@tarojs/plugin-mock": "^0.0.6",
     "@tarojs/webpack-runner": "3.0.15",
+    "@types/mockjs": "^1.0.3",
     "@types/react": "^16.0.0",
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^2.x",
@@ -62,8 +64,28 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "mockjs": "^1.1.0",
     "prettier": "^2.1.2",
-    "stylelint": "9.3.0",
+    "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.18.0",
     "typescript": "^3.7.0"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "declaration-colon-newline-after": null,
+      "at-rule-no-unknown": null,
+      "color-hex-case": null,
+      "block-closing-brace-newline-after": null,
+      "at-rule-empty-line-before": null,
+      "number-no-trailing-zeros": null,
+      "no-empty-source": null,
+      "unit-case": null,
+      "scss/at-rule-no-unknown": true
+    }
   }
 }

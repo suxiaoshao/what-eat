@@ -1,7 +1,7 @@
 import { PageConfig } from '@tarojs/taro';
 
 const config: PageConfig = {
-  navigationBarTitleText: '首页',
+  navigationBarTitleText: '窗口收藏',
   disableScroll: true,
 };
-export default config;
+export default config; 

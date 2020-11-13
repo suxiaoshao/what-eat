@@ -1,0 +1,20 @@
+.index {
+  background-color: #f5f5f5;
+  max-height: calc(100% - 67.52px);
+  display: flex;
+  flex-direction: column;
+
+  .index-tab {
+    flex: 0 0 76rpx;
+  }
+
+  .index-main {
+    flex: 1 1 0;
+    max-height: calc(100% - 76rpx);
+
+    .index-list {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}
