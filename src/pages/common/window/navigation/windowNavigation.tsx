@@ -1,16 +1,18 @@
-import { View } from '@tarojs/components';
-import { getSystemInfoSync, getMenuButtonBoundingClientRect, showToast } from '@tarojs/taro';
+import { View, Text } from '@tarojs/components';
+import { getSystemInfoSync, getMenuButtonBoundingClientRect, showToast, navigateBack, navigateTo } from '@tarojs/taro';
 import * as React from 'react';
 import { AtIcon } from 'taro-ui';
 import { useUserId } from '../../../../util/store/user';
 import './window-Navigation.scss';
 import { postUpdateMarkedWindow } from '../../../../util/http/postUpdateMarkedWindow';
+import MyIcon from '../../../../components/myIcon';
 
 export default function WindowNavigation(props: {
   className: string;
   children: React.ReactNode;
   windowId: number;
   isMarked: boolean;
+  windowName: string | undefined;
   onChangeMarked: (value: boolean) => void;
 }): JSX.Element {
   const [statusBarHeight] = React.useState<number>(getSystemInfoSync().statusBarHeight);
@@ -27,7 +29,23 @@ export default function WindowNavigation(props: {
             height: `${buttonRect.height + 14}px`,
           }}
         >
-          <AtIcon className='navigation-back' value='chevron-left' color='#ffffff' />
+          <AtIcon
+            className='navigation-back'
+            value='chevron-left'
+            color='#ffffff'
+            onClick={() => {
+              navigateBack();
+            }}
+          />
+          {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
+          <MyIcon
+            value='new-releases'
+            size={26}
+            color='#FFE0B2'
+            onClick={() => {
+              navigateTo({ url: '/pages/common/feedback/index' });
+            }}
+          />
           {props.isMarked ? (
             <AtIcon
               className='navigation-star'
