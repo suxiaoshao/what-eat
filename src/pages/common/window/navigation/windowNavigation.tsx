@@ -38,47 +38,49 @@ export default function WindowNavigation(props: {
             }}
           />
           {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
-          <MyIcon
-            value='new-releases'
-            size={26}
-            color='#FFE0B2'
-            onClick={() => {
-              navigateTo({ url: '/pages/common/feedback/index' });
-            }}
-          />
-          {props.isMarked ? (
-            <AtIcon
-              className='navigation-star'
-              value='star-2'
-              color='#FFAB40'
+          <View className='navigation-right-icon'>
+            <MyIcon
+              value='new-releases'
+              size={26}
+              color='#FFE0B2'
               onClick={() => {
-                postUpdateMarkedWindow(props.windowId, userId)
-                  .then(() => {
-                    showToast({ title: '成功取消收藏' });
-                    props.onChangeMarked(false);
-                  })
-                  .catch((err) => {
-                    showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                  });
+                navigateTo({ url: '/pages/common/feedback/index' }).then();
               }}
             />
-          ) : (
-            <AtIcon
-              className='navigation-star'
-              value='star'
-              color='#ffffff'
-              onClick={() => {
-                postUpdateMarkedWindow(props.windowId, userId)
-                  .then(() => {
-                    showToast({ title: '成功收藏' });
-                    props.onChangeMarked(true);
-                  })
-                  .catch((err) => {
-                    showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                  });
-              }}
-            />
-          )}
+            {props.isMarked ? (
+              <AtIcon
+                className='navigation-star'
+                value='star-2'
+                color='#FFAB40'
+                onClick={() => {
+                  postUpdateMarkedWindow(props.windowId, userId)
+                    .then(() => {
+                      showToast({ title: '成功取消收藏' }).then();
+                      props.onChangeMarked(false);
+                    })
+                    .catch((err) => {
+                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') }).then();
+                    });
+                }}
+              />
+            ) : (
+              <AtIcon
+                className='navigation-star'
+                value='star'
+                color='#ffffff'
+                onClick={() => {
+                  postUpdateMarkedWindow(props.windowId, userId)
+                    .then(() => {
+                      showToast({ title: '成功收藏' });
+                      props.onChangeMarked(true);
+                    })
+                    .catch((err) => {
+                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
+                    });
+                }}
+              />
+            )}
+          </View>
         </View>
       </View>
       <View className={`navigation-main ${props.className}`}>{props.children}</View>

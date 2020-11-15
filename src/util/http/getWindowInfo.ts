@@ -1,5 +1,18 @@
 import { httpGet } from './main';
 
+export interface Tag {
+  tagName: string;
+  tagId: number;
+}
+
+export interface DishItem {
+  dishName: string;
+  dishId: number;
+  price: number;
+  star: number;
+  tags: Tag[];
+}
+
 export interface GetWindowInfoData {
   windowId: number;
   windowName: string;
@@ -8,14 +21,9 @@ export interface GetWindowInfoData {
   mapSrc: string;
   canteenName: string;
   star: number;
-  tags: number[];
+  tags: Tag[];
   isMarked: boolean;
-  dish: {
-    dishName: string;
-    dishId: number;
-    price: number;
-    star: number;
-  }[];
+  dish: DishItem[];
 }
 
 export async function getWindowInfo(windowId: number, userId: number): Promise<GetWindowInfoData> {

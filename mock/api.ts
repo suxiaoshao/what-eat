@@ -21,7 +21,7 @@ export default {
           dish: new Array(3).fill(1).map(() => {
             return mock.mock({
               'dishid|1-1000': 1,
-              dishName: mock.Random.cword(3,8),
+              dishName: mock.Random.cword(3, 8),
             });
           }),
         });
@@ -68,16 +68,25 @@ export default {
       mapSrc: 'https://pic3.zhimg.com/80/v2-0158fd3a40f3396ec766aec48b8a21da_720w.jpg',
       'canteenName|1': ['玫瑰园', '京元', '紫荆园', '教工食堂'],
       'star|1-4.1': 2,
-      tags: new Array(5).fill(1).map(() => {
-        return mock.Random.natural(1, 50);
+      tags: new Array(10).fill(1).map(() => {
+        return mock.mock({
+          'tagId|1-1000': 1,
+          tagName: mock.Random.cword(3, 5),
+        });
       }),
       'isMarked|1': true,
-      dish: new Array(10).fill(1).map(() => {
+      dish: new Array(20).fill(1).map(() => {
         return mock.mock({
           dishName: mock.Random.cword(3, 7),
           'dishId|1-1000': 1,
           'price|1-100': 1,
           'star|1-4.1': 2,
+          tags: new Array(5).fill(1).map(() => {
+            return mock.mock({
+              'tagId|1-1000': 1,
+              tagName: mock.Random.cword(3, 5),
+            });
+          }),
         });
       }),
     }),
