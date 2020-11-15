@@ -1,16 +1,18 @@
-import { View } from '@tarojs/components';
-import { getSystemInfoSync, getMenuButtonBoundingClientRect, showToast } from '@tarojs/taro';
+import { View, Text } from '@tarojs/components';
+import { getSystemInfoSync, getMenuButtonBoundingClientRect, showToast, navigateBack, navigateTo } from '@tarojs/taro';
 import * as React from 'react';
 import { AtIcon } from 'taro-ui';
 import { useUserId } from '../../../../util/store/user';
 import './window-Navigation.scss';
 import { postUpdateMarkedWindow } from '../../../../util/http/postUpdateMarkedWindow';
+import MyIcon from '../../../../components/myIcon';
 
 export default function WindowNavigation(props: {
   className: string;
   children: React.ReactNode;
   windowId: number;
   isMarked: boolean;
+  windowName: string | undefined;
   onChangeMarked: (value: boolean) => void;
 }): JSX.Element {
   const [statusBarHeight] = React.useState<number>(getSystemInfoSync().statusBarHeight);
@@ -27,40 +29,58 @@ export default function WindowNavigation(props: {
             height: `${buttonRect.height + 14}px`,
           }}
         >
-          <AtIcon className='navigation-back' value='chevron-left' color='#ffffff' />
-          {props.isMarked ? (
-            <AtIcon
-              className='navigation-star'
-              value='star-2'
-              color='#FFAB40'
+          <AtIcon
+            className='navigation-back'
+            value='chevron-left'
+            color='#ffffff'
+            onClick={() => {
+              navigateBack();
+            }}
+          />
+          {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
+          <View className='navigation-right-icon'>
+            <MyIcon
+              value='new-releases'
+              size={26}
+              color='#FFE0B2'
               onClick={() => {
-                postUpdateMarkedWindow(props.windowId, userId)
-                  .then(() => {
-                    showToast({ title: '成功取消收藏' });
-                    props.onChangeMarked(false);
-                  })
-                  .catch((err) => {
-                    showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                  });
+                navigateTo({ url: '/pages/common/feedback/index' }).then();
               }}
             />
-          ) : (
-            <AtIcon
-              className='navigation-star'
-              value='star'
-              color='#ffffff'
-              onClick={() => {
-                postUpdateMarkedWindow(props.windowId, userId)
-                  .then(() => {
-                    showToast({ title: '成功收藏' });
-                    props.onChangeMarked(true);
-                  })
-                  .catch((err) => {
-                    showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                  });
-              }}
-            />
-          )}
+            {props.isMarked ? (
+              <AtIcon
+                className='navigation-star'
+                value='star-2'
+                color='#FFAB40'
+                onClick={() => {
+                  postUpdateMarkedWindow(props.windowId, userId)
+                    .then(() => {
+                      showToast({ title: '成功取消收藏' }).then();
+                      props.onChangeMarked(false);
+                    })
+                    .catch((err) => {
+                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') }).then();
+                    });
+                }}
+              />
+            ) : (
+              <AtIcon
+                className='navigation-star'
+                value='star'
+                color='#ffffff'
+                onClick={() => {
+                  postUpdateMarkedWindow(props.windowId, userId)
+                    .then(() => {
+                      showToast({ title: '成功收藏' });
+                      props.onChangeMarked(true);
+                    })
+                    .catch((err) => {
+                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
+                    });
+                }}
+              />
+            )}
+          </View>
         </View>
       </View>
       <View className={`navigation-main ${props.className}`}>{props.children}</View>

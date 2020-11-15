@@ -9,7 +9,12 @@ import WindowCard from '../../components/windowCard/windowCard';
 export default function IndexList(props: { type: number; none: boolean }): JSX.Element {
   const [userId] = useUserId();
   const [fn, loading, errorString, data] = useAsyncFunc<GetWindowDishRecommendData>(async () => {
-    return await getWindowRecommend(props.type, userId);
+    const data = await getWindowRecommend(props.type, userId);
+    return props.type === 1
+      ? {
+          windowList: data.windowList.reverse(),
+        }
+      : data;
   });
   React.useEffect(() => {
     fn();

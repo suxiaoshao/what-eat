@@ -10497,7 +10497,7 @@ react-reconciler@^0.23.0:
     prop-types "^15.6.2"
     scheduler "^0.17.0"
 
-react@^16.10.0:
+react@^16.10.0, react@^16.13.0:
   version "16.14.0"
   resolved "https://registry.npm.taobao.org/react/download/react-16.14.0.tgz?cache=0&sync_timestamp=1603367627799&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha1-lNd23dCqo32j7aj8W2sYpMmjEU0=
@@ -12336,6 +12336,14 @@ taro-css-to-react-native@^2.0.4:
     css-color-keywords "^1.0.0"
     css-mediaquery "^0.1.2"
     postcss-value-parser "^3.3.0"
+
+taro-icons@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/taro-icons/download/taro-icons-0.4.0.tgz#1065379bc38f8ded9b3b0b0481066f6647bf313b"
+  integrity sha1-EGU3m8OPje2bOwsEgQZvZke/MTs=
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.13.0"
 
 taro-ui@^3.0.0-alpha.3:
   version "3.0.0-alpha.3"

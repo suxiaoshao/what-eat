@@ -1,0 +1,28 @@
+.window-content {
+  display: flex;
+  flex: 1 1 0;
+  width: 100%;
+
+  .window-tag-list {
+    flex: 0 0 20vw;
+    height: 100%;
+    overflow: auto;
+
+    .tag-item {
+      padding: 30px 10px;
+      color: #00000090;
+      font-size: 28px;
+    }
+
+    .tag-item-active {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+
+  .window-dish-list {
+    flex: 1 1 0;
+    height: 100%;
+    overflow: auto;
+  }
+}

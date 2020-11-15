@@ -1,12 +1,14 @@
-import { View } from '@tarojs/components';
 import { useRouter } from '@tarojs/taro';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
+import 'taro-icons/scss/MaterialIcons.scss';
 import './index.scss';
 import WindowNavigation from './navigation/windowNavigation';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import { getWindowInfo, GetWindowInfoData } from '../../../util/http/getWindowInfo';
 import { useUserId } from '../../../util/store/user';
+import WindowDesc from './windowDesc/windowDesc';
+import WindowContent from './windowContent/windowContent';
 
 export default function Window() {
   const router = useRouter<{ windowId: string }>();
@@ -26,6 +28,7 @@ export default function Window() {
   }, [httpWindowData]);
   return (
     <WindowNavigation
+      windowName={windowData?.windowName}
       onChangeMarked={(value) => {
         const newWindowData = { ...windowData };
         newWindowData.isMarked = value;
@@ -43,15 +46,12 @@ export default function Window() {
             fn();
           }}
         />
-      ) : (
+      ) : windowData ? (
         <React.Fragment>
-          <View className='window-desc'></View>
-          <View className='window-jt'>
-            <View className='tag-list'></View>
-            <View className='dish-list'></View>
-          </View>
+          <WindowDesc {...windowData} />
+          <WindowContent {...windowData} />
         </React.Fragment>
-      )}
+      ) : undefined}
     </WindowNavigation>
   );
 }
