@@ -1,7 +1,6 @@
 import { useRouter } from '@tarojs/taro';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
-import 'taro-icons/scss/MaterialIcons.scss';
 import './index.scss';
 import WindowNavigation from './navigation/windowNavigation';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
@@ -12,20 +11,16 @@ import WindowContent from './windowContent/windowContent';
 
 export default function Window() {
   const router = useRouter<{ windowId: string }>();
-  const [windowData, setWindowData] = React.useState<undefined | GetWindowInfoData>(undefined);
   const windowId = React.useMemo<number>(() => {
     return parseInt(router.params.windowId);
   }, [router.params.windowId]);
   const [userId] = useUserId();
-  const [fn, loading, errorString, httpWindowData] = useAsyncFunc<GetWindowInfoData>(async () => {
+  const [fn, loading, errorString, windowData, setWindowData] = useAsyncFunc<GetWindowInfoData>(async () => {
     return await getWindowInfo(windowId, userId);
   }, [windowId, userId]);
   React.useEffect(() => {
     fn();
-  }, [fn]);
-  React.useEffect(() => {
-    setWindowData(httpWindowData);
-  }, [httpWindowData]);
+  }, []);
   return (
     <WindowNavigation
       windowName={windowData?.windowName}
@@ -46,12 +41,12 @@ export default function Window() {
             fn();
           }}
         />
-      ) : windowData ? (
+      ) : (
         <React.Fragment>
           <WindowDesc {...windowData} />
           <WindowContent {...windowData} />
         </React.Fragment>
-      ) : undefined}
+      )}
     </WindowNavigation>
   );
 }

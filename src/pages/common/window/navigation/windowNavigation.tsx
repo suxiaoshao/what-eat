@@ -34,7 +34,7 @@ export default function WindowNavigation(props: {
             value='chevron-left'
             color='#ffffff'
             onClick={() => {
-              navigateBack();
+              navigateBack().then();
             }}
           />
           {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
@@ -47,39 +47,24 @@ export default function WindowNavigation(props: {
                 navigateTo({ url: '/pages/common/feedback/index' }).then();
               }}
             />
-            {props.isMarked ? (
-              <AtIcon
+            {props.windowName ? (
+              <MyIcon
+                size={26}
                 className='navigation-star'
-                value='star-2'
+                value={props.isMarked ? 'star' : 'star-border'}
                 color='#FFAB40'
                 onClick={() => {
                   postUpdateMarkedWindow(props.windowId, userId)
                     .then(() => {
-                      showToast({ title: '成功取消收藏' }).then();
-                      props.onChangeMarked(false);
+                      showToast({ title: props.isMarked ? '取消收藏成功' : '收藏成功' }).then();
+                      props.onChangeMarked(!props.isMarked);
                     })
                     .catch((err) => {
                       showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') }).then();
                     });
                 }}
               />
-            ) : (
-              <AtIcon
-                className='navigation-star'
-                value='star'
-                color='#ffffff'
-                onClick={() => {
-                  postUpdateMarkedWindow(props.windowId, userId)
-                    .then(() => {
-                      showToast({ title: '成功收藏' });
-                      props.onChangeMarked(true);
-                    })
-                    .catch((err) => {
-                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                    });
-                }}
-              />
-            )}
+            ) : undefined}
           </View>
         </View>
       </View>

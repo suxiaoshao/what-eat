@@ -31,7 +31,7 @@ export default {
 
   'GET /user/search': {
     data: mock.mock({
-      searchlist: new Array(1).fill(1).map(() => {
+      searchList: new Array(1).fill(1).map(() => {
         return mock.mock({
           'id|1-1000': 2,
           name: mock.Random.cword(3, 7),
@@ -187,6 +187,7 @@ export default {
           'tagId|1-1000': 1,
           'tagNum|1-100': 1,
           'hasTagged|1': true,
+          tagName: mock.Random.cword(3, 5),
         });
       }),
     }),
