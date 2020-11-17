@@ -14,6 +14,8 @@ export interface GetDishInfoData {
   star: number;
   starNum: number[];
   tagList: DishTag[];
+  windowName: string;
+  windowId: number;
 }
 
 export async function getDishInfo(dishId: number, userId: number): Promise<GetDishInfoData> {

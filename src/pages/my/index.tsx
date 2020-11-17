@@ -25,7 +25,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({url: '/pages/common/favorites/index'}).then();
+              navigateTo({ url: '/pages/common/favorites/index' }).then();
             }}
           >
             <AtIcon value='heart-2' size={35} color='#D32F2F' />
@@ -34,7 +34,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({url: '/pages/common/markedWindow/index'}).then();
+              navigateTo({ url: '/pages/common/markedWindow/index' }).then();
             }}
           >
             <AtIcon value='star-2' size={35} color='#FFAB40' />
@@ -43,7 +43,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({url: '/pages/common/feedback/index'}).then();
+              navigateTo({ url: '/pages/common/feedback/index' }).then();
             }}
           >
             <AtIcon value='mail' size={35} />
@@ -53,8 +53,20 @@ export default function Index(): JSX.Element {
       </View>
       <View className='bottom'>
         <AtList>
-          <AtListItem title='喜欢标签' arrow='right' />
-          <AtListItem title='忌口标签' arrow='right' />
+          <AtListItem
+            title='喜欢标签'
+            arrow='right'
+            onClick={() => {
+              navigateTo({ url: '/pages/common/updateTag/index' }).then();
+            }}
+          />
+          <AtListItem
+            title='忌口标签'
+            arrow='right'
+            onClick={() => {
+              navigateTo({ url: '/pages/common/updateTag/index' }).then();
+            }}
+          />
         </AtList>
       </View>
     </Taber>

@@ -177,11 +177,13 @@ export default {
     data: mock.mock({
       dishName: mock.Random.cword(5),
       'price|1-100': 1,
-      'userStar': -1,
+      userStar: -1,
       'star|1-4.1': 2,
       starNum: new Array(5).fill(1).map(() => {
         return mock.Random.natural(1, 5);
       }),
+      windowName: mock.Random.cword(3, 5),
+      'windowId|1-1000':2,
       tagList: new Array(10).fill(1).map(() => {
         return mock.mock({
           'tagId|1-1000': 1,

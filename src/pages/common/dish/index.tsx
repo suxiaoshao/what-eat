@@ -1,7 +1,7 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
-import { useRouter } from '@tarojs/taro';
+import { useRouter, navigateTo } from '@tarojs/taro';
 import './index.scss';
 import { GetDishInfoData, getDishInfo } from '../../../util/http/getDishInfo';
 import { useUserId } from '../../../util/store/user';
@@ -9,6 +9,7 @@ import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import DishScore from './dishScore/dishScore';
 import DishTagList from './dishTag/dishTagList';
 import DishUserStar from './dishUserStar/dishUserStar';
+import MyIcon from '../../../components/myIcon';
 
 export default function Dish() {
   // 获取路由数据
@@ -39,8 +40,20 @@ export default function Dish() {
       ) : (
         <React.Fragment>
           <View className='dish-info'>
-            <View className='dish-name'>{dishData.dishName}</View>
-            <View className='dish-price'>{dishData.price}元</View>
+            <View>
+              <View className='dish-name'>{dishData.dishName}</View>
+              <View className='dish-price'>{dishData.price}元</View>
+            </View>
+            <MyIcon
+              value='error'
+              size={30}
+              color='#78909C'
+              onClick={() => {
+                navigateTo({
+                  url: `/pages/common/feedback/index?windowName=${dishData.windowName}&dishName=${dishData.dishName}`,
+                }).then();
+              }}
+            />
           </View>
           <DishScore {...dishData} />
           <DishTagList

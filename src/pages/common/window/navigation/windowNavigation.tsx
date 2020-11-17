@@ -45,7 +45,7 @@ export default function WindowNavigation(props: {
               size={26}
               color='#FFE0B2'
               onClick={() => {
-                navigateTo({ url: '/pages/common/feedback/index' }).then();
+                navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
               }}
             />
             {props.windowName ? (
