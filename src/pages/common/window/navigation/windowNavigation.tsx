@@ -6,6 +6,7 @@ import { useUserId } from '../../../../util/store/user';
 import './window-Navigation.scss';
 import { postUpdateMarkedWindow } from '../../../../util/http/postUpdateMarkedWindow';
 import MyIcon from '../../../../components/myIcon';
+import { httpToast } from '../../../../util/http/httpToast';
 
 export default function WindowNavigation(props: {
   className: string;
@@ -54,14 +55,14 @@ export default function WindowNavigation(props: {
                 value={props.isMarked ? 'star' : 'star-border'}
                 color='#FFAB40'
                 onClick={() => {
-                  postUpdateMarkedWindow(props.windowId, userId)
-                    .then(() => {
-                      showToast({ title: props.isMarked ? '取消收藏成功' : '收藏成功' }).then();
-                      props.onChangeMarked(!props.isMarked);
-                    })
-                    .catch((err) => {
-                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') }).then();
-                    });
+                  httpToast<{}>(
+                    async () => {
+                      return await postUpdateMarkedWindow(props.windowId, userId);
+                    },
+                    props.isMarked ? '取消收藏成功' : '收藏成功',
+                  ).then(() => {
+                    props.onChangeMarked(!props.isMarked);
+                  });
                 }}
               />
             ) : undefined}

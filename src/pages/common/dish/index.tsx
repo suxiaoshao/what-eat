@@ -1,12 +1,14 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
-import { AtBadge, AtButton, AtLoadMore } from 'taro-ui';
+import { AtLoadMore } from 'taro-ui';
 import { useRouter } from '@tarojs/taro';
 import './index.scss';
 import { GetDishInfoData, getDishInfo } from '../../../util/http/getDishInfo';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import DishScore from './dishScore/dishScore';
+import DishTagList from './dishTag/dishTagList';
+import DishUserStar from './dishUserStar/dishUserStar';
 
 export default function Dish() {
   // 获取路由数据
@@ -17,16 +19,13 @@ export default function Dish() {
   }, [router.params.dishId]);
   // 用户id
   const [userId] = useUserId();
-  const [fn, loading, errorString, dishData] = useAsyncFunc<GetDishInfoData>(async () => {
+  const [fn, loading, errorString, dishData, setDishData] = useAsyncFunc<GetDishInfoData>(async () => {
     return await getDishInfo(dishId, userId);
   }, [dishId, userId]);
   // 页面载入时网络请求
   React.useEffect(() => {
     fn();
   }, [fn]);
-  React.useEffect(() => {
-    console.log(dishData);
-  }, [dishData]);
   return (
     <View className='dish'>
       {loading || errorString != undefined ? (
@@ -44,18 +43,24 @@ export default function Dish() {
             <View className='dish-price'>{dishData.price}元</View>
           </View>
           <DishScore {...dishData} />
-          <View className='dish-tag-list'>
-            {dishData.tagList.map((item) => {
-              return (
-                <AtBadge key={item.tagId} value={item.tagNum}>
-                  <AtButton size='small' type={item.hasTagged ? 'primary' : undefined}>
-                    {item.tagName}
-                  </AtButton>
-                </AtBadge>
-              );
-            })}
-          </View>
-          <View className='dish-user-star'>{dishData.userStar}</View>
+          <DishTagList
+            dishId={dishId}
+            {...dishData}
+            onUpdateDishTag={(newValue) => {
+              const newDishData = { ...dishData };
+              newDishData.tagList = newValue;
+              setDishData(newDishData);
+            }}
+          />
+          <DishUserStar
+            onChangeUserStar={(newValue) => {
+              const newDishData = { ...dishData };
+              newDishData.userStar = newValue;
+              setDishData(newDishData);
+            }}
+            dishId={dishId}
+            {...dishData}
+          />
         </React.Fragment>
       )}
     </View>

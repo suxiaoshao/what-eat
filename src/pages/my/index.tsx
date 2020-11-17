@@ -25,7 +25,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({ url: '/pages/common/favorites/index' });
+              navigateTo({url: '/pages/common/favorites/index'}).then();
             }}
           >
             <AtIcon value='heart-2' size={35} color='#D32F2F' />
@@ -34,7 +34,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({ url: '/pages/common/markedWindow/index' });
+              navigateTo({url: '/pages/common/markedWindow/index'}).then();
             }}
           >
             <AtIcon value='star-2' size={35} color='#FFAB40' />
@@ -43,7 +43,7 @@ export default function Index(): JSX.Element {
           <View
             className='grid-item'
             onClick={() => {
-              navigateTo({ url: '/pages/common/feedback/index' });
+              navigateTo({url: '/pages/common/feedback/index'}).then();
             }}
           >
             <AtIcon value='mail' size={35} />

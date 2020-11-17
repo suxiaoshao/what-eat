@@ -1,0 +1,12 @@
+.dish-tag-list {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 50px;
+
+  .dish-tag-item {
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+}

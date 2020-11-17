@@ -20,7 +20,7 @@ export default function DishScore(props: { star: number; starNum: number[] }): J
           <AtRate size={12} value={props.star} />
         </View>
         <View className='dish-star-detail'>
-          {props.starNum.reverse().map((value, index) => {
+          {[...props.starNum].reverse().map((value, index) => {
             return (
               <View key={index} className='dish-star-detail-item'>
                 <AtRate size={10} value={0} max={5 - index} />

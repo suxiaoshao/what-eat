@@ -1,17 +1,19 @@
 import { httpGet } from './main';
 
+export interface DishTag {
+  tagId: number;
+  tagNum: number;
+  hasTagged: boolean;
+  tagName: string;
+}
+
 export interface GetDishInfoData {
   dishName: string;
   price: number;
   userStar: number;
   star: number;
   starNum: number[];
-  tagList: {
-    tagId: number;
-    tagNum: number;
-    hasTagged: boolean;
-    tagName: string;
-  }[];
+  tagList: DishTag[];
 }
 
 export async function getDishInfo(dishId: number, userId: number): Promise<GetDishInfoData> {
