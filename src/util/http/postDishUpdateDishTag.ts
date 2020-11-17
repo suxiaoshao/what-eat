@@ -1,10 +1,10 @@
 import { httpPost } from './main';
 
 export interface PostDishUpdateDishTagData {
-  dishName: string;
+  tagName: string;
   tagId: number;
-  count: number;
-  markedTag: boolean;
+  tagNum: number;
+  hasTagged: boolean;
 }
 
 export async function postDishUpdateDishTag(userId: number, dishId: number, tagId: number): Promise<PostDishUpdateDishTagData> {

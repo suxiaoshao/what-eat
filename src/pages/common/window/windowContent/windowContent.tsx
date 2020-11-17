@@ -10,19 +10,19 @@ export default function WindowContent(props: { tags: Tag[]; dish: DishItem[] }):
   const [dishList, setDishList] = React.useState<DishItem[]>(props.dish);
   React.useEffect(() => {
     const newList = props.dish
-      .filter(() => {
+      ?.filter(() => {
         return Math.random() > 0.5;
       })
-      .reverse();
+      ?.reverse();
     setDishList(newList);
-  }, [activeTagIndex]);
+  }, [activeTagIndex, props.dish]);
   React.useEffect(() => {
     pageScrollTo({ selector: '.window-dish-list' }).then();
   }, [dishList]);
   return (
     <View className='window-content'>
       <View className='window-tag-list'>
-        {props.tags.map((value, index) => {
+        {props.tags?.map((value, index) => {
           return (
             <View
               className={`tag-item${index === activeTagIndex ? ' tag-item-active' : ''}`}
@@ -37,7 +37,7 @@ export default function WindowContent(props: { tags: Tag[]; dish: DishItem[] }):
         })}
       </View>
       <AtList className='window-dish-list'>
-        {dishList.map((value) => {
+        {dishList?.map((value) => {
           return (
             <AtListItem
               key={value.dishId}

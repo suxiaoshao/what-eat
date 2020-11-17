@@ -20,7 +20,7 @@ export default {
           'star|1-4.1': 1,
           dish: new Array(3).fill(1).map(() => {
             return mock.mock({
-              'dishid|1-1000': 1,
+              'dishId|1-1000': 1,
               dishName: mock.Random.cword(3, 8),
             });
           }),
@@ -31,7 +31,7 @@ export default {
 
   'GET /user/search': {
     data: mock.mock({
-      searchlist: new Array(1).fill(1).map(() => {
+      searchList: new Array(1).fill(1).map(() => {
         return mock.mock({
           'id|1-1000': 2,
           name: mock.Random.cword(3, 7),
@@ -52,10 +52,10 @@ export default {
 
   'POST /dish/updateDishTag': {
     data: mock.mock({
-      dishName: mock.Random.cword(3, 7),
+      tagName: mock.Random.cword(3, 7),
       'tagId|1-1000': 2,
-      'count|1-1000': 1,
-      'markedTag|1': true,
+      'tagNum|1-1000': 1,
+      'hasTagged|1': true,
     }),
   },
 
@@ -177,16 +177,19 @@ export default {
     data: mock.mock({
       dishName: mock.Random.cword(5),
       'price|1-100': 1,
-      'userStar|-1-5': 2,
+      userStar: -1,
       'star|1-4.1': 2,
       starNum: new Array(5).fill(1).map(() => {
         return mock.Random.natural(1, 5);
       }),
+      windowName: mock.Random.cword(3, 5),
+      'windowId|1-1000':2,
       tagList: new Array(10).fill(1).map(() => {
         return mock.mock({
           'tagId|1-1000': 1,
           'tagNum|1-100': 1,
           'hasTagged|1': true,
+          tagName: mock.Random.cword(3, 5),
         });
       }),
     }),

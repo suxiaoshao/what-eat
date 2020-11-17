@@ -6,6 +6,7 @@ import { useUserId } from '../../../../util/store/user';
 import './window-Navigation.scss';
 import { postUpdateMarkedWindow } from '../../../../util/http/postUpdateMarkedWindow';
 import MyIcon from '../../../../components/myIcon';
+import { httpToast } from '../../../../util/http/httpToast';
 
 export default function WindowNavigation(props: {
   className: string;
@@ -34,7 +35,7 @@ export default function WindowNavigation(props: {
             value='chevron-left'
             color='#ffffff'
             onClick={() => {
-              navigateBack();
+              navigateBack().then();
             }}
           />
           {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
@@ -44,42 +45,27 @@ export default function WindowNavigation(props: {
               size={26}
               color='#FFE0B2'
               onClick={() => {
-                navigateTo({ url: '/pages/common/feedback/index' }).then();
+                navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
               }}
             />
-            {props.isMarked ? (
-              <AtIcon
+            {props.windowName ? (
+              <MyIcon
+                size={26}
                 className='navigation-star'
-                value='star-2'
+                value={props.isMarked ? 'star' : 'star-border'}
                 color='#FFAB40'
                 onClick={() => {
-                  postUpdateMarkedWindow(props.windowId, userId)
-                    .then(() => {
-                      showToast({ title: '成功取消收藏' }).then();
-                      props.onChangeMarked(false);
-                    })
-                    .catch((err) => {
-                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') }).then();
-                    });
+                  httpToast<{}>(
+                    async () => {
+                      return await postUpdateMarkedWindow(props.windowId, userId);
+                    },
+                    props.isMarked ? '取消收藏成功' : '收藏成功',
+                  ).then(() => {
+                    props.onChangeMarked(!props.isMarked);
+                  });
                 }}
               />
-            ) : (
-              <AtIcon
-                className='navigation-star'
-                value='star'
-                color='#ffffff'
-                onClick={() => {
-                  postUpdateMarkedWindow(props.windowId, userId)
-                    .then(() => {
-                      showToast({ title: '成功收藏' });
-                      props.onChangeMarked(true);
-                    })
-                    .catch((err) => {
-                      showToast({ title: `${err},请重试`, image: require('../../../../assets/fail.svg') });
-                    });
-                }}
-              />
-            )}
+            ) : undefined}
           </View>
         </View>
       </View>

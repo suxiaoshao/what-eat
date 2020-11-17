@@ -10,7 +10,7 @@ export type LoadingAsyncState = [true, undefined, undefined];
 
 export type AsyncState<T> = SuccessAsyncState<T> | ErrorAsyncState | LoadingAsyncState;
 
-export type AsyncReturn<T> = [() => void, ...AsyncState<T>];
+export type AsyncReturn<T> = [() => void, ...AsyncState<T>, (newValue: T) => void];
 
 export function useAsyncFunc<T>(
   fn: AsyncFunc<T>,
@@ -28,5 +28,8 @@ export function useAsyncFunc<T>(
         setAsyncState([false, errorString, undefined]);
       });
   }, deps);
-  return [newFn, ...asyncState];
+  const setData = (newValue: T) => {
+    setAsyncState([false, undefined, newValue]);
+  };
+  return [newFn, ...asyncState, setData];
 }

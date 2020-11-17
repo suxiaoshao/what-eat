@@ -19,7 +19,7 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
     <View
       className='window-card'
       onClick={() => {
-        navigateTo({url: `/pages/common/window/index?windowId=${props.windowId}`}).then();
+        navigateTo({ url: `/pages/common/window/index?windowId=${props.windowId}` }).then();
       }}
     >
       <View className='window-main'>
@@ -29,7 +29,14 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
         <View className='desc'>
           <View className='title-star'>
             <Text className='title'>{props.windowName}</Text>
-            <AtButton size='small'>窗口反馈</AtButton>
+            <AtButton
+              size='small'
+              onClick={() => {
+                navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
+              }}
+            >
+              窗口反馈
+            </AtButton>
           </View>
           <View className='title-star'>
             <Text className='canteen'>{props.canteenName}</Text>
@@ -40,7 +47,15 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
       </View>
       <View className='dish-list-feedback'>
         {props.dish.map((value) => (
-          <AtTag className='dish' size='small' key={value.dishId} active>
+          <AtTag
+            onClick={() => {
+              navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();
+            }}
+            className='dish'
+            size='small'
+            key={value.dishId}
+            active
+          >
             {value.dishName}
           </AtTag>
         ))}

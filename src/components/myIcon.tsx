@@ -6,10 +6,11 @@ export default function MyIcon(props: {
   size?: number;
   color?: string;
   onClick?: () => void;
+  className?: string;
 }): JSX.Element {
   return (
     <Text
-      className={`md md-${props.value}`}
+      className={`md md-${props.value}${props.className ? ' ' + props.className : ''}`}
       style={{ fontSize: props.size ? props.size : 24, color: props.color ? props.color : '#fff' }}
       onClick={() => {
         props?.onClick();

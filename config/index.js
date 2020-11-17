@@ -39,7 +39,7 @@ const config = {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[dishName]__[local]___[hash:base64:5]'
+          generateScopedName: '[tagName]__[local]___[hash:base64:5]'
         }
       }
     }
@@ -57,7 +57,7 @@ const config = {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[dishName]__[local]___[hash:base64:5]'
+          generateScopedName: '[tagName]__[local]___[hash:base64:5]'
         }
       }
     }
