@@ -143,7 +143,7 @@ export default {
   },
   'GET /window/getMarkedWindow': {
     data: mock.mock({
-      windowList: new Array(10).fill(1).map(() => {
+      windowList: new Array(30).fill(1).map(() => {
         return mock.mock({
           'windowId|1-1000': 99,
           windowName: mock.Random.cword(5),
@@ -163,7 +163,7 @@ export default {
   },
   'GET /dish/favorites': {
     data: mock.mock({
-      dishList: new Array(10).fill(1).map(() => {
+      dishList: new Array(30).fill(1).map(() => {
         return mock.mock({
           'dishId|1-1000': 99,
           dishName: mock.Random.cword(5),
