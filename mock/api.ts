@@ -149,12 +149,12 @@ export default {
           windowName: mock.Random.cword(5),
           pngSrc: 'https://pic2.zhimg.com/80/v2-91a8a0cd17f264f52b9d0e9d7ec0e712_720w.jpg?source=1940ef5c',
           description: mock.Random.cparagraph(5, 50),
-          canteeName: mock.Random.cword(5),
+          canteenName: mock.Random.cword(5),
           'star|1-4.1': 2,
-          dish: new Array(10).fill(1).map(() => {
+          dish: new Array(3).fill(1).map(() => {
             return mock.mock({
-              name: mock.Random.cword(5),
-              'id|1-1000': 99,
+              dishName: mock.Random.cword(3, 7),
+              'dishId|1-1000': 99,
             });
           }),
         });
@@ -183,7 +183,7 @@ export default {
         return mock.Random.natural(1, 5);
       }),
       windowName: mock.Random.cword(3, 5),
-      'windowId|1-1000':2,
+      'windowId|1-1000': 2,
       tagList: new Array(10).fill(1).map(() => {
         return mock.mock({
           'tagId|1-1000': 1,
