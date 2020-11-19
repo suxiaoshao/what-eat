@@ -1,7 +1,7 @@
 import { httpGet } from './main';
 
-export interface GetdishfavoritesData {
-  
+export interface DishFavoritesData {
+
     dishList: {
         dishId : number,
         dishName : string,
@@ -10,6 +10,6 @@ export interface GetdishfavoritesData {
   }[];
 }
 
-export async function getDishFavorites(userId:number): Promise<GetdishfavoritesData> {
-  return await httpGet<GetdishfavoritesData, { userId:number }>('/dish/favorites', { userId:userId });
+export async function getDishFavorites(userId:number): Promise<DishFavoritesData> {
+  return await httpGet<DishFavoritesData, { userId:number }>('/dish/favorites', { userId:userId });
 }

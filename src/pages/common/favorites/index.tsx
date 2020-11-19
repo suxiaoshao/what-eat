@@ -1,7 +1,48 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
+import { navigateTo } from '@tarojs/taro';
+import { AtList, AtListItem, AtLoadMore } from 'taro-ui';
 import './index.scss';
+import { useUserId } from '../../../util/store/user';
+import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
+import { getDishFavorites } from '../../../util/http/getDishFavorites';
 
 export default function Favorites() {
-  return <View className='favorites'></View>;
+  const [userId] = useUserId();
+  const [fn, loading, errorString, dishList] = useAsyncFunc(async () => {
+    return await getDishFavorites(userId);
+  });
+  React.useEffect(() => {
+    fn();
+  }, [userId]);
+  return (
+    <View className='favorites'>
+      {loading || errorString != undefined ? (
+        <AtLoadMore
+          moreText={`${errorString},请点击重试`}
+          status={loading ? 'loading' : 'more'}
+          onClick={() => {
+            fn();
+          }}
+        />
+      ) : (
+        <AtList>
+          {dishList.dishList.map((value) => {
+            return (
+              <AtListItem
+                key={value.dishId}
+                title={value.dishName}
+                note={`${value.price}元`}
+                extraText={`${value.star}分`}
+                arrow='right'
+                onClick={() => {
+                  navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();
+                }}
+              />
+            );
+          })}
+        </AtList>
+      )}
+    </View>
+  );
 }

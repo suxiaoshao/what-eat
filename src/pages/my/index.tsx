@@ -57,14 +57,14 @@ export default function Index(): JSX.Element {
             title='喜欢标签'
             arrow='right'
             onClick={() => {
-              navigateTo({ url: '/pages/common/updateTag/index' }).then();
+              navigateTo({ url: '/pages/common/updateTag/index?mode=0' }).then();
             }}
           />
           <AtListItem
             title='忌口标签'
             arrow='right'
             onClick={() => {
-              navigateTo({ url: '/pages/common/updateTag/index' }).then();
+              navigateTo({ url: '/pages/common/updateTag/index?mode=1' }).then();
             }}
           />
         </AtList>

@@ -1,14 +1,14 @@
 import { httpGet } from './main';
 
+export interface TagData {
+  tagId: number;
+  tagName: string;
+}
+
 export interface GetUserInfoData {
-  preferredList: {
-    tagId: number;
-    tagName: string;
-  }[];
-  avoidList: {
-    tagId: number;
-    tagName: string;
-  }[];
+  preferredList: TagData[];
+  avoidList: TagData[];
+  allList: TagData[];
 }
 
 export async function getUserInfo(userId: number): Promise<GetUserInfoData> {

@@ -1,5 +1,19 @@
 import * as mock from 'mockjs';
 
+const preferredList = new Array(10).fill(1).map(() => {
+  return mock.mock({
+    'tagId|1-1000': 8,
+    tagName: mock.Random.cword(3, 5),
+  });
+});
+
+const avoidList = new Array(10).fill(1).map(() => {
+  return mock.mock({
+    'tagId|1-1000': 8,
+    tagName: mock.Random.cword(3, 5),
+  });
+});
+
 export default {
   'POST /user/login': {
     data: mock.mock({
@@ -7,7 +21,6 @@ export default {
       'hasRegistered|1': true,
     }),
   },
-
   'GET /window/recommend': {
     data: {
       windowList: new Array(10).fill(1).map(() => {
@@ -28,7 +41,6 @@ export default {
       }),
     },
   },
-
   'GET /user/search': {
     data: mock.mock({
       searchList: new Array(1).fill(1).map(() => {
@@ -49,7 +61,6 @@ export default {
       }),
     }),
   },
-
   'POST /dish/updateDishTag': {
     data: mock.mock({
       tagName: mock.Random.cword(3, 7),
@@ -58,7 +69,6 @@ export default {
       'hasTagged|1': true,
     }),
   },
-
   'GET /window/info': {
     data: mock.mock({
       'windowId|1-1000': 2,
@@ -91,7 +101,6 @@ export default {
       }),
     }),
   },
-
   'GET /system/getInfo': {
     data: mock.mock({
       tags: new Array(10).fill(1).map(() => {
@@ -127,34 +136,33 @@ export default {
   },
   'GET /user/getInfo': {
     data: mock.mock({
-      preferredList: new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'tagId|1-100': 8,
-          tagName: mock.Random.cword(5),
-        });
-      }),
-      avoidList: new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'tagId|1-100': 8,
-          tagName: mock.Random.cword(5),
-        });
-      }),
+      preferredList: preferredList,
+      avoidList: avoidList,
+      allList: preferredList.concat(
+        avoidList,
+        new Array(10).fill(1).map(() => {
+          return mock.mock({
+            'tagId|1-1000': 8,
+            tagName: mock.Random.cword(3, 5),
+          });
+        }),
+      ),
     }),
   },
   'GET /window/getMarkedWindow': {
     data: mock.mock({
-      windowList: new Array(10).fill(1).map(() => {
+      windowList: new Array(30).fill(1).map(() => {
         return mock.mock({
           'windowId|1-1000': 99,
           windowName: mock.Random.cword(5),
           pngSrc: 'https://pic2.zhimg.com/80/v2-91a8a0cd17f264f52b9d0e9d7ec0e712_720w.jpg?source=1940ef5c',
           description: mock.Random.cparagraph(5, 50),
-          canteeName: mock.Random.cword(5),
+          canteenName: mock.Random.cword(5),
           'star|1-4.1': 2,
-          dish: new Array(10).fill(1).map(() => {
+          dish: new Array(3).fill(1).map(() => {
             return mock.mock({
-              name: mock.Random.cword(5),
-              'id|1-1000': 99,
+              dishName: mock.Random.cword(3, 7),
+              'dishId|1-1000': 99,
             });
           }),
         });
@@ -163,7 +171,7 @@ export default {
   },
   'GET /dish/favorites': {
     data: mock.mock({
-      dishList: new Array(10).fill(1).map(() => {
+      dishList: new Array(30).fill(1).map(() => {
         return mock.mock({
           'dishId|1-1000': 99,
           dishName: mock.Random.cword(5),
@@ -183,7 +191,7 @@ export default {
         return mock.Random.natural(1, 5);
       }),
       windowName: mock.Random.cword(3, 5),
-      'windowId|1-1000':2,
+      'windowId|1-1000': 2,
       tagList: new Array(10).fill(1).map(() => {
         return mock.mock({
           'tagId|1-1000': 1,
