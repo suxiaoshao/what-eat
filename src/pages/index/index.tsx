@@ -19,9 +19,9 @@ export default function Index(): JSX.Element {
         className='index-tab'
       />
       <View className='index-main'>
-        <IndexList type={0} none={tab !== 0} />
-        <IndexList type={1} none={tab !== 1} />
-        <IndexList type={2} none={tab !== 2} />
+        <IndexList type={1} none={tab !== 0} />
+        <IndexList type={2} none={tab !== 1} />
+        <IndexList type={3} none={tab !== 2} />
       </View>
     </Taber>
   );
