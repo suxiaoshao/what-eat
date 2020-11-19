@@ -10,7 +10,7 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
   const [userId] = useUserId();
   const [fn, loading, errorString, data] = useAsyncFunc<GetWindowDishRecommendData>(async () => {
     const newData = await getWindowRecommend(props.type, userId);
-    return props.type === 1
+    return props.type === 2
       ? {
           windowList: newData.windowList.reverse(),
         }
