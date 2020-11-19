@@ -1,17 +1,23 @@
 import { httpPost } from './main';
+import { TagData } from './getUserInfo';
 
 export interface PostUserUpdateInfoData {
   userId: number;
-  preferredList: {
-    tagId: number;
-    tagName: string;
-  }[];
-  avoidList: {
-    tagId: number;
-    tagName: string;
-  }[];
+  preferredList: TagData[];
+  avoidList: TagData[];
 }
 
-export async function postUserUpdateInfo(userId: number): Promise<PostUserUpdateInfoData> {
-  return await httpPost<PostUserUpdateInfoData, { userId: number }>('/user/updateInfo', { userId: userId });
+export async function postUserUpdateInfo(
+  userId: number,
+  preferredList: TagData[],
+  avoidList: TagData[],
+): Promise<PostUserUpdateInfoData> {
+  return await httpPost<
+    PostUserUpdateInfoData,
+    {
+      userId: number;
+      preferredList: TagData[];
+      avoidList: TagData[];
+    }
+  >('/user/updateInfo', { userId: userId, preferredList: preferredList, avoidList: avoidList });
 }

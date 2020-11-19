@@ -1,5 +1,19 @@
 import * as mock from 'mockjs';
 
+const preferredList = new Array(10).fill(1).map(() => {
+  return mock.mock({
+    'tagId|1-1000': 8,
+    tagName: mock.Random.cword(3, 5),
+  });
+});
+
+const avoidList = new Array(10).fill(1).map(() => {
+  return mock.mock({
+    'tagId|1-1000': 8,
+    tagName: mock.Random.cword(3, 5),
+  });
+});
+
 export default {
   'POST /user/login': {
     data: mock.mock({
@@ -7,7 +21,6 @@ export default {
       'hasRegistered|1': true,
     }),
   },
-
   'GET /window/recommend': {
     data: {
       windowList: new Array(10).fill(1).map(() => {
@@ -28,7 +41,6 @@ export default {
       }),
     },
   },
-
   'GET /user/search': {
     data: mock.mock({
       searchList: new Array(1).fill(1).map(() => {
@@ -49,7 +61,6 @@ export default {
       }),
     }),
   },
-
   'POST /dish/updateDishTag': {
     data: mock.mock({
       tagName: mock.Random.cword(3, 7),
@@ -58,7 +69,6 @@ export default {
       'hasTagged|1': true,
     }),
   },
-
   'GET /window/info': {
     data: mock.mock({
       'windowId|1-1000': 2,
@@ -91,7 +101,6 @@ export default {
       }),
     }),
   },
-
   'GET /system/getInfo': {
     data: mock.mock({
       tags: new Array(10).fill(1).map(() => {
@@ -127,18 +136,17 @@ export default {
   },
   'GET /user/getInfo': {
     data: mock.mock({
-      preferredList: new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'tagId|1-100': 8,
-          tagName: mock.Random.cword(5),
-        });
-      }),
-      avoidList: new Array(10).fill(1).map(() => {
-        return mock.mock({
-          'tagId|1-100': 8,
-          tagName: mock.Random.cword(5),
-        });
-      }),
+      preferredList: preferredList,
+      avoidList: avoidList,
+      allList: preferredList.concat(
+        avoidList,
+        new Array(10).fill(1).map(() => {
+          return mock.mock({
+            'tagId|1-1000': 8,
+            tagName: mock.Random.cword(3, 5),
+          });
+        }),
+      ),
     }),
   },
   'GET /window/getMarkedWindow': {
