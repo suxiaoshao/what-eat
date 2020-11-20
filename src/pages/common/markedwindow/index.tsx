@@ -17,10 +17,10 @@ export default function MarkedWindow() {
   }, [userId]);
   return (
     <View className='marked-window'>
-      {loading || errorString !== undefined || windowList.windowList.length===0 ? (
+      {loading || errorString !== undefined || windowList.windowList.length === 0 ? (
         <AtLoadMore
-          moreText={errorString ? `${errorString},请点击重试` : '没有更多'}
-          status={loading ? 'loading' : 'more'}
+          moreText={`${errorString},请点击重试`}
+          status={loading ? 'loading' : errorString !== undefined ? 'more' : 'noMore'}
           onClick={() => {
             fn();
           }}

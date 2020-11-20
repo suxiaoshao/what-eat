@@ -17,10 +17,10 @@ export default function Favorites() {
   }, [userId]);
   return (
     <View className='favorites'>
-      {loading || errorString !== undefined || dishList.dishList.length===0 ? (
+      {loading || errorString !== undefined || dishList.dishList.length === 0 ? (
         <AtLoadMore
-          moreText={errorString ? `${errorString},请点击重试` : '没有更多'}
-          status={loading ? 'loading' : 'more'}
+          moreText={`${errorString},请点击重试`}
+          status={loading ? 'loading' : errorString !== undefined ? 'more' : 'noMore'}
           onClick={() => {
             fn();
           }}
