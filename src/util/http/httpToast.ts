@@ -10,7 +10,7 @@ export function httpToast<T>(func: () => Promise<T>, successString: string): Pro
       return value;
     })
     .catch((err) => {
-      showToast({ title: `${err},请重试`, image: require('../../assets/fail.svg') }).then();
+      showToast({ title: `${err}`, image: require('../../assets/fail.svg') }).then();
       throw '';
     });
 }

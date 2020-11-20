@@ -15,10 +15,12 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
           windowList: newData.windowList.reverse(),
         }
       : newData;
-  });
+  },[userId]);
   React.useEffect(() => {
-    fn();
-  }, []);
+    if(userId!==-1){
+      fn();
+    }
+  }, [fn]);
   return (
     <View style={props.none ? { display: 'none' } : undefined} className='index-list'>
       {loading || errorString != undefined ? (

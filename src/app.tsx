@@ -5,6 +5,7 @@ import 'taro-icons/scss/MaterialIcons.scss';
 import { ThisUserInfo, useUserId, useUserInfo } from './util/store/user';
 import './app.scss';
 import { postUserlogin } from './util/http/postUserlogin';
+import { httpToast } from './util/http/httpToast';
 
 function App(props: { children: React.ReactNode }) {
   const [, setUserInfo] = useUserInfo();
@@ -19,17 +20,14 @@ function App(props: { children: React.ReactNode }) {
         setUserInfo(userInfo);
       })
       .catch(() => {
-        redirectTo({ url: '/pages/common/authorization/index' });
+        redirectTo({ url: '/pages/common/authorization/index' }).then();
       });
     login().then((e) => {
-      console.log(e.code);
-      postUserlogin(e.code)
-        .then((userId) => {
-          setUserId(userId.userId);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      httpToast(async () => {
+        return await postUserlogin(e.code);
+      }, '登入成功').then((data) => {
+        setUserId(data.userId);
+      });
     });
   }, [setUserId, setUserInfo]);
   return props.children;

@@ -23,7 +23,7 @@ export interface GetWindowInfoData {
   star: number;
   tags: Tag[];
   isMarked: boolean;
-  dish: DishItem[];
+  dishes: DishItem[];
 }
 
 export async function getWindowInfo(windowId: number, userId: number): Promise<GetWindowInfoData> {

@@ -1,11 +1,7 @@
 import { httpPost } from './main';
 import { TagData } from './getUserInfo';
 
-export interface PostUserUpdateInfoData {
-  userId: number;
-  preferredList: TagData[];
-  avoidList: TagData[];
-}
+export interface PostUserUpdateInfoData {}
 
 export async function postUserUpdateInfo(
   userId: number,
