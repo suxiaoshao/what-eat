@@ -33,7 +33,7 @@ export default function Favorites() {
                 key={value.dishId}
                 title={value.dishName}
                 note={`${value.price}元`}
-                extraText={`${value.star}分`}
+                extraText={`${Number(value.star).toFixed(1)}分`}
                 arrow='right'
                 onClick={() => {
                   navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();
