@@ -14,9 +14,13 @@ export default function Index(): JSX.Element {
   const [searchContent, setSearchContent] = React.useState<string>('');
   const [canteenId, setCanteenId] = React.useState<number | undefined>(undefined);
   const [tagList, setTagList] = React.useState<number[] | undefined>(undefined);
-  const [fn, loading, errorString, searchData] = useAsyncFunc(async () => {
-    return await getUserSearch(searchContent, tagList, canteenId);
-  }, [searchContent, canteenId, tagList]);
+  const [fn, loading, errorString, searchData] = useAsyncFunc(
+    async () => {
+      return await getUserSearch(searchContent, tagList, canteenId);
+    },
+    [searchContent, canteenId, tagList],
+    [undefined, undefined, { searchList: [] }],
+  );
   return (
     <Taber className='filter'>
       <FilterNavigation
