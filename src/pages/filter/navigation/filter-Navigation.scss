@@ -1,0 +1,26 @@
+.navigation {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .navigation-main {
+    flex: 1 1 0;
+    padding: 0;
+  }
+
+  .navigation-bar {
+    background-color: #d32f2f;
+
+    .navigation-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .filter-search {
+        background-color: rgba(0, 0, 0, 0);
+        width: 100%;
+        border: rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}

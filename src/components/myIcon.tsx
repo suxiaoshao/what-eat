@@ -13,7 +13,7 @@ export default function MyIcon(props: {
       className={`md md-${props.value}${props.className ? ' ' + props.className : ''}`}
       style={{ fontSize: props.size ? props.size : 24, color: props.color ? props.color : '#fff' }}
       onClick={() => {
-        props?.onClick();
+        props.onClick();
       }}
     />
   );

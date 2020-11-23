@@ -17,10 +17,10 @@ export default function Favorites() {
   }, [userId]);
   return (
     <View className='favorites'>
-      {loading || errorString != undefined ? (
+      {loading || errorString !== undefined || dishList.dishList.length === 0 ? (
         <AtLoadMore
           moreText={`${errorString},请点击重试`}
-          status={loading ? 'loading' : 'more'}
+          status={loading ? 'loading' : errorString !== undefined ? 'more' : 'noMore'}
           onClick={() => {
             fn();
           }}
@@ -33,7 +33,7 @@ export default function Favorites() {
                 key={value.dishId}
                 title={value.dishName}
                 note={`${value.price}元`}
-                extraText={`${value.star}分`}
+                extraText={`${Number(value.star).toFixed(1)}分`}
                 arrow='right'
                 onClick={() => {
                   navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();

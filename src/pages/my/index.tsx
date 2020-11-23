@@ -5,15 +5,9 @@ import { navigateTo } from '@tarojs/taro';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import { useUserInfo } from '../../util/store/user';
-import { getUserInfo } from '../../util/http/getUserInfo';
 
 export default function Index(): JSX.Element {
   const [userInfo] = useUserInfo();
-  React.useEffect(() => {
-    getUserInfo(1).then((e) => {
-      console.log(e);
-    });
-  }, []);
   return (
     <Taber className='my'>
       <View className='top'>

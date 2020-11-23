@@ -1,6 +1,6 @@
 import { Button, Picker, View } from '@tarojs/components';
 import * as React from 'react';
-import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore, AtTag } from 'taro-ui';
+import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore } from 'taro-ui';
 import { useRouter } from '@tarojs/taro';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
@@ -120,7 +120,9 @@ export default function UpdateTag() {
               onClick={() => {
                 httpToast(async () => {
                   return await postUserUpdateInfo(userId, userTagList.preferredList, userTagList.avoidList);
-                }, '成功更新').then();
+                }, '成功更新').finally(() => {
+                  fn();
+                });
               }}
             >
               <MyIcon className='update-tag-send-icon' value='send' size={25} color='#000' /> 确定修改

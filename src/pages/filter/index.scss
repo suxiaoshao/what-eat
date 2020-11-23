@@ -1,10 +1,44 @@
 .filter {
+  .filter-content {
+    padding: 20px;
+    background-color: #F4F6F9;
+    height: 100%;
+    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
-    .filter-search {
-        flex: 0 0 auto;
+
+    .filter-form {
+      flex: 0 0 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .filter-form-item {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .filter-form-tag {
+        .filter-form-se-tag {
+          max-height: 50px;
+          flex: 0 0 auto;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+        }
+
+        .filter-form-un-tag {
+          flex: 1 1 0;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+        }
+      }
     }
-    .filter-content {
+
+    .filter-data-list {
       flex: 1 1 0;
     }
   }
+}

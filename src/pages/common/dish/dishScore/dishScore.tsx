@@ -16,7 +16,7 @@ export default function DishScore(props: { star: number; starNum: number[] }): J
       <View className='dish-star-top'>吃点啥评分</View>
       <View className='dish-star-content'>
         <View className='dish-star-value'>
-          {props.star}
+          {Number(props.star).toFixed(1)}
           <AtRate size={12} value={props.star} />
         </View>
         <View className='dish-star-detail'>

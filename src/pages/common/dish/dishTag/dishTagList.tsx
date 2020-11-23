@@ -29,12 +29,7 @@ export default function DishTagList(props: {
                   const newValue = props.tagList.map<PostDishUpdateDishTagData>((value) => {
                     return value.tagId !== item.tagId
                       ? value
-                      : {
-                          hasTagged: !item.hasTagged,
-                          tagNum: item.tagNum + (item.hasTagged ? -1 : 1),
-                          tagName: item.tagName,
-                          tagId: item.tagId,
-                        };
+                      : data;
                   });
                   props.onUpdateDishTag(newValue);
                 });
