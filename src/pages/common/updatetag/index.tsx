@@ -1,7 +1,7 @@
 import { Button, Picker, View } from '@tarojs/components';
 import * as React from 'react';
 import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore } from 'taro-ui';
-import { useRouter } from '@tarojs/taro';
+import { usePullDownRefresh, useRouter } from '@tarojs/taro';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
@@ -23,6 +23,9 @@ export default function UpdateTag() {
   React.useEffect(() => {
     fn();
   }, [fn]);
+  usePullDownRefresh(() => {
+    fn();
+  });
   const [modeList] = React.useState<string[]>(['修改喜欢标签', '修改忌口标签']);
   const preOtherList = React.useMemo<TagData[]>(() => {
     return userTagList?.allList?.filter((item) => {

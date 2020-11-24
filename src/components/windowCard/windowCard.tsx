@@ -40,7 +40,7 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
           </View>
           <View className='title-star'>
             <Text className='canteen'>{props.canteenName}</Text>
-            <Text className='star'>{props.star}分</Text>
+            <Text className='star'>{Number(props.star).toFixed(1)}分</Text>
           </View>
           <View className='desc-content'>{props.description}</View>
         </View>

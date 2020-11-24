@@ -11,6 +11,7 @@ export default function Taber(props: { children: React.ReactNode; className: str
     <View className='tab-bar-main'>
       <View className={`page-main ${props.className}`}>{props.children}</View>
       <AtTabBar
+        className='tab-tab'
         selectedColor='#D32F2F'
         current={routerList.indexOf(router.path)}
         tabList={[

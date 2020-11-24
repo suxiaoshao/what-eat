@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, Image, Button, Text } from '@tarojs/components';
 import { reLaunch } from '@tarojs/taro';
-import 'taro-ui/dist/style/components/button.scss';
 import './index.scss';
 import { ThisUserInfo, useUserInfo } from '../../../util/store/user';
 

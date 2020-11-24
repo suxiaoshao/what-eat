@@ -1,4 +1,5 @@
 import { DependencyList, useCallback, useState } from 'react';
+import { stopPullDownRefresh } from '@tarojs/taro';
 
 export type AsyncFunc<T> = () => Promise<T>;
 
@@ -26,6 +27,9 @@ export function useAsyncFunc<T>(
       })
       .catch((errorString: string) => {
         setAsyncState([false, errorString, undefined]);
+      })
+      .then(() => {
+        stopPullDownRefresh();
       });
   }, deps);
   const setData = (newValue: T) => {

@@ -1,9 +1,9 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
-import { useRouter, navigateTo } from '@tarojs/taro';
+import { navigateTo, usePullDownRefresh, useRouter } from '@tarojs/taro';
 import './index.scss';
-import { GetDishInfoData, getDishInfo } from '../../../util/http/getDishInfo';
+import { getDishInfo, GetDishInfoData } from '../../../util/http/getDishInfo';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import DishScore from './dishScore/dishScore';
@@ -27,6 +27,9 @@ export default function Dish() {
   React.useEffect(() => {
     fn();
   }, [fn]);
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <View className='dish'>
       {loading || errorString != undefined ? (

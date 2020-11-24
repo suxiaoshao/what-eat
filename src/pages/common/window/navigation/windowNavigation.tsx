@@ -1,5 +1,5 @@
-import { View, Text } from '@tarojs/components';
-import { getSystemInfoSync, getMenuButtonBoundingClientRect, showToast, navigateBack, navigateTo } from '@tarojs/taro';
+import { Text, View } from '@tarojs/components';
+import { getMenuButtonBoundingClientRect, getSystemInfoSync, navigateBack, navigateTo } from '@tarojs/taro';
 import * as React from 'react';
 import { AtIcon } from 'taro-ui';
 import { useUserId } from '../../../../util/store/user';
@@ -21,7 +21,7 @@ export default function WindowNavigation(props: {
   const [userId] = useUserId();
   return (
     <View className='navigation'>
-      <View className='navigation-bar' style={{ flex: `0 0 ${buttonRect.bottom + 7}px` }}>
+      <View className='navigation-bar' style={{ height: `${buttonRect.bottom + 7}px` }}>
         <View
           className='navigation-button'
           style={{
@@ -69,7 +69,12 @@ export default function WindowNavigation(props: {
           </View>
         </View>
       </View>
-      <View className={`navigation-main ${props.className}`}>{props.children}</View>
+      <View
+        className={props.className}
+        style={{ height: `calc(100% - ${buttonRect.bottom + 7}px)`, paddingTop: `${buttonRect.bottom + 7}px` }}
+      >
+        {props.children}
+      </View>
     </View>
   );
 }

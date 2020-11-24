@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
 import { AtLoadMore } from 'taro-ui';
-import 'taro-ui/dist/style/components/button.scss';
+import { usePullDownRefresh } from '@tarojs/taro';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import FilterNavigation from './navigation/filterNavigation';
@@ -14,9 +14,16 @@ export default function Index(): JSX.Element {
   const [searchContent, setSearchContent] = React.useState<string>('');
   const [canteenId, setCanteenId] = React.useState<number | undefined>(undefined);
   const [tagList, setTagList] = React.useState<number[] | undefined>(undefined);
-  const [fn, loading, errorString, searchData] = useAsyncFunc(async () => {
-    return await getUserSearch(searchContent, tagList, canteenId);
-  }, [searchContent, canteenId, tagList]);
+  const [fn, loading, errorString, searchData] = useAsyncFunc(
+    async () => {
+      return await getUserSearch(searchContent, tagList, canteenId);
+    },
+    [searchContent, canteenId, tagList],
+    [undefined, undefined, { searchList: [] }],
+  );
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <Taber className='filter'>
       <FilterNavigation

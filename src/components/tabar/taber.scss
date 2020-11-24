@@ -1,10 +1,11 @@
 .tab-bar-main {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
 
   .page-main {
-    flex: 1 1 0;
-    min-height: 62.52px;
+    height: calc(100vh - 136px);
+  }
+
+  .tab-tab {
+    position: fixed;
+    bottom: 0;
   }
 }

@@ -1,6 +1,6 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
-import { navigateTo } from '@tarojs/taro';
+import { navigateTo, usePullDownRefresh } from '@tarojs/taro';
 import { AtList, AtListItem, AtLoadMore } from 'taro-ui';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
@@ -15,6 +15,9 @@ export default function Favorites() {
   React.useEffect(() => {
     fn();
   }, [userId]);
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <View className='favorites'>
       {loading || errorString !== undefined || dishList.dishList.length === 0 ? (
