@@ -1,6 +1,6 @@
 import { request } from '@tarojs/taro';
 
-const httpBaseUrl = 'http://123.56.51.120';
+const httpBaseUrl = 'http://www.what-to-eat.top';
 
 export const errorInfo = {
   '-1': '系统繁忙',
@@ -36,7 +36,7 @@ export function httpBase<T, U>(url: string, data: U, method: 'GET' | 'POST'): Pr
       fail: () => {
         reject('网络错误');
       },
-      timeout: 8000,
+      timeout: 20000,
     });
   });
 }
