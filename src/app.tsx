@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { getUserInfo, login, redirectTo } from '@tarojs/taro';
-import 'taro-ui/dist/style/index.scss';
-import 'taro-icons/scss/MaterialIcons.scss';
-import { ThisUserInfo, useUserId, useUserInfo } from './util/store/user';
 import './app.scss';
+import { ThisUserInfo, useUserId, useUserInfo } from './util/store/user';
 import { postUserlogin } from './util/http/postUserlogin';
 import { httpToast } from './util/http/httpToast';
 import { getSystemInfo } from './util/http/getSystemInfo';

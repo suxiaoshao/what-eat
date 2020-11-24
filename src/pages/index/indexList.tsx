@@ -1,5 +1,6 @@
 import { AtLoadMore } from 'taro-ui';
 import * as React from 'react';
+import { usePullDownRefresh } from '@tarojs/taro';
 import { View } from '@tarojs/components';
 import { GetWindowDishRecommendData, getWindowRecommend } from '../../util/http/getWindowRecommend';
 import { useAsyncFunc } from '../../util/hook/useAsyncFunc';
@@ -8,7 +9,7 @@ import WindowCard from '../../components/windowCard/windowCard';
 
 export default function IndexList(props: { type: number; none: boolean }): JSX.Element {
   const [userId] = useUserId();
-  const [fn, loading, errorString, data] = useAsyncFunc<GetWindowDishRecommendData>(async () => {
+  const [fn, loading, errorString, recommendData] = useAsyncFunc<GetWindowDishRecommendData>(async () => {
     return await getWindowRecommend(props.type, userId);
   }, [userId]);
   React.useEffect(() => {
@@ -16,6 +17,9 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
       fn();
     }
   }, [fn]);
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <View style={props.none ? { display: 'none' } : undefined} className='index-list'>
       {loading || errorString != undefined ? (
@@ -27,7 +31,7 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
           }}
         />
       ) : (
-        data.windowList.map((value) => <WindowCard {...value} key={value.windowId} />)
+        recommendData.windowList.map((value) => <WindowCard {...value} key={value.windowId} />)
       )}
     </View>
   );

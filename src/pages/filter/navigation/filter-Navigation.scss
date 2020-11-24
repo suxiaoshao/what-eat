@@ -1,15 +1,13 @@
 .navigation {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .navigation-main {
-    flex: 1 1 0;
-    padding: 0;
-  }
+  position: relative;
 
   .navigation-bar {
+    width: 100%;
+    position: fixed;
+    top: 0;
     background-color: #d32f2f;
+    z-index: 10;
 
     .navigation-button {
       display: flex;

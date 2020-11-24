@@ -1,4 +1,4 @@
-import { useRouter } from '@tarojs/taro';
+import { useRouter,usePullDownRefresh } from '@tarojs/taro';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
 import './index.scss';
@@ -20,7 +20,10 @@ export default function Window() {
   }, [windowId, userId]);
   React.useEffect(() => {
     fn();
-  }, []);
+  }, [fn]);
+  usePullDownRefresh(()=>{
+    fn()
+  })
   return (
     <WindowNavigation
       windowName={windowData?.windowName}

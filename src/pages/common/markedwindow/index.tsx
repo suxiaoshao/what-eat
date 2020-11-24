@@ -1,6 +1,7 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
+import { usePullDownRefresh } from '@tarojs/taro';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
@@ -11,10 +12,13 @@ export default function MarkedWindow() {
   const [userId] = useUserId();
   const [fn, loading, errorString, windowList] = useAsyncFunc(async () => {
     return await getMarkedWindow(userId);
-  });
+  }, [userId]);
   React.useEffect(() => {
     fn();
-  }, [userId]);
+  }, [fn]);
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <View className='marked-window'>
       {loading || errorString !== undefined || windowList.windowList.length === 0 ? (

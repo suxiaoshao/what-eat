@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
 import { AtLoadMore } from 'taro-ui';
-import 'taro-ui/dist/style/components/button.scss';
+import { usePullDownRefresh } from '@tarojs/taro';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import FilterNavigation from './navigation/filterNavigation';
@@ -21,6 +21,9 @@ export default function Index(): JSX.Element {
     [searchContent, canteenId, tagList],
     [undefined, undefined, { searchList: [] }],
   );
+  usePullDownRefresh(() => {
+    fn();
+  });
   return (
     <Taber className='filter'>
       <FilterNavigation

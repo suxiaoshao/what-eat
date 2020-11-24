@@ -8,7 +8,7 @@
   background-color: #fff;
 
   .window-main {
-    $imageWidth: 25vw;
+    $imageWidth: 23vw;
     $miniPadding: 15px;
     $lineHeight: 32px;
     $fontSize: 28px;
@@ -83,6 +83,7 @@
   }
 
   .dish-list-feedback {
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     font-size: 32px;
@@ -91,12 +92,5 @@
     .dish {
       margin: 0;
     }
-  }
-
-  .image {
-    width: 100%;
-    height: 40vw;
-    margin-top: 20px;
-    border-radius: 20px;
   }
 }
