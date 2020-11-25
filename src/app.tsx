@@ -13,6 +13,7 @@ function App(props: { children: React.ReactNode }) {
   const [, setTagList] = useTagList();
   const [, setCanteenList] = useCanteenList();
   React.useEffect(() => {
+    /* 获取用户头像 */
     getUserInfo()
       .then((e) => {
         const userInfo: ThisUserInfo = {
@@ -24,13 +25,22 @@ function App(props: { children: React.ReactNode }) {
       .catch(() => {
         redirectTo({ url: '/pages/common/authorization/index' }).then();
       });
-    login().then((e) => {
-      httpToast(async () => {
-        return await postUserlogin(e.code);
-      }, '登入成功').then((data) => {
+
+    /* 获取用户id 及跳转 */
+    login()
+      .then((e) => {
+        return httpToast(async () => {
+          return await postUserlogin(e.code);
+        }, '登入成功');
+      })
+      .then((data) => {
         setUserId(data.userId);
+        if (!data.hasRegistered) {
+          return redirectTo({ url: '/pages/common/updateTag/index' });
+        }
       });
-    });
+
+    /* 获取系统信息*/
     httpToast(async () => {
       return await getSystemInfo();
     }, '获取系统信息成功').then((data) => {

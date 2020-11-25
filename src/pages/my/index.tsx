@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Text, View } from '@tarojs/components';
-import { AtAvatar, AtIcon, AtList, AtListItem } from 'taro-ui';
+import { AtAvatar, AtList, AtListItem } from 'taro-ui';
 import { navigateTo } from '@tarojs/taro';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import { useUserInfo } from '../../util/store/user';
+import MyIcon from '../../components/myIcon';
 
 export default function Index(): JSX.Element {
   const [userInfo] = useUserInfo();
@@ -22,7 +23,7 @@ export default function Index(): JSX.Element {
               navigateTo({ url: '/pages/common/favorites/index' }).then();
             }}
           >
-            <AtIcon value='heart-2' size={35} color='#D32F2F' />
+            <MyIcon value='favorite' size={40} color='#D32F2F' />
             <Text className='grid-text'>最爱的菜</Text>
           </View>
           <View
@@ -31,7 +32,7 @@ export default function Index(): JSX.Element {
               navigateTo({ url: '/pages/common/markedWindow/index' }).then();
             }}
           >
-            <AtIcon value='star-2' size={35} color='#FFAB40' />
+            <MyIcon value='stars' size={40} color='#FFAB40' />
             <Text className='grid-text'>收藏窗口</Text>
           </View>
           <View
@@ -40,7 +41,7 @@ export default function Index(): JSX.Element {
               navigateTo({ url: '/pages/common/feedback/index' }).then();
             }}
           >
-            <AtIcon value='mail' size={35} />
+            <MyIcon color='#616161' value='feedback' size={40} />
             <Text className='grid-text'>反馈</Text>
           </View>
         </View>

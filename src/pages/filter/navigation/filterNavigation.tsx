@@ -1,8 +1,8 @@
 import { View } from '@tarojs/components';
-import { getMenuButtonBoundingClientRect, getSystemInfoSync } from '@tarojs/taro';
 import * as React from 'react';
 import { AtSearchBar } from 'taro-ui';
 import './filter-Navigation.scss';
+import { useButtonRect, useStatusBarHeight } from '../../../util/store/size';
 
 export default function FilterNavigation(props: {
   className: string;
@@ -11,8 +11,8 @@ export default function FilterNavigation(props: {
   onSearchContentChange(newValue: string): void;
   onSearch(): void;
 }): JSX.Element {
-  const [statusBarHeight] = React.useState<number>(getSystemInfoSync().statusBarHeight);
-  const [buttonRect] = React.useState<getMenuButtonBoundingClientRect.Rect>(getMenuButtonBoundingClientRect());
+  const [statusBarHeight] = useStatusBarHeight();
+  const [buttonRect] = useButtonRect();
   return (
     <View className='navigation'>
       <View className='navigation-bar' style={{ height: `${buttonRect.bottom + 7}px` }}>

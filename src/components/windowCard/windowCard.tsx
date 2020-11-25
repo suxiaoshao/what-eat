@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Image, Text, View } from '@tarojs/components';
-import { AtButton, AtTag } from 'taro-ui';
+import { AtTag } from 'taro-ui';
 import { navigateTo } from '@tarojs/taro';
 import './windowCard.scss';
+import MyIcon from '../myIcon';
 
 interface WindowCardProps {
   pngSrc: string;
@@ -29,14 +30,14 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
         <View className='desc'>
           <View className='title-star'>
             <Text className='title'>{props.windowName}</Text>
-            <AtButton
-              size='small'
+            <MyIcon
+              value='feedback'
+              color='#616161'
+              size={25}
               onClick={() => {
                 navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
               }}
-            >
-              窗口反馈
-            </AtButton>
+            />
           </View>
           <View className='title-star'>
             <Text className='canteen'>{props.canteenName}</Text>

@@ -1,4 +1,4 @@
-import { useRouter,usePullDownRefresh } from '@tarojs/taro';
+import { usePullDownRefresh, useRouter, useShareAppMessage } from '@tarojs/taro';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
 import './index.scss';
@@ -21,9 +21,22 @@ export default function Window() {
   React.useEffect(() => {
     fn();
   }, [fn]);
-  usePullDownRefresh(()=>{
-    fn()
-  })
+  usePullDownRefresh(() => {
+    fn();
+  });
+  useShareAppMessage((payload) => {
+    console.log(payload);
+    return {
+      title: `向你推荐了「${windowData?.windowName}」`,
+      imageUrl: windowData.pngSrc,
+    };
+  });
+  useShareAppMessage(() => {
+    return {
+      title: `「${windowData?.windowName}」很不错呦~`,
+      imageUrl: windowData.pngSrc,
+    };
+  });
   return (
     <WindowNavigation
       windowName={windowData?.windowName}

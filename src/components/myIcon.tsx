@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from '@tarojs/components';
+import { Text, View } from '@tarojs/components';
 
 export default function MyIcon(props: {
   value: string;
@@ -7,14 +7,25 @@ export default function MyIcon(props: {
   color?: string;
   onClick?: () => void;
   className?: string;
+  hoverClass?: string;
 }): JSX.Element {
   return (
-    <Text
-      className={`md md-${props.value}${props.className ? ' ' + props.className : ''}`}
-      style={{ fontSize: props.size ? props.size : 24, color: props.color ? props.color : '#fff' }}
-      onClick={() => {
+    <View
+      className={props.className}
+      onClick={(e) => {
+        e.stopPropagation();
         props.onClick();
       }}
-    />
+      hoverClass={props.hoverClass}
+      style={{
+        height: 'auto',
+        width: 'auto',
+      }}
+    >
+      <Text
+        className={`md md-${props.value}`}
+        style={{ fontSize: props.size ? props.size : 24, color: props.color ? props.color : '#fff', display: 'block' }}
+      />
+    </View>
   );
 }

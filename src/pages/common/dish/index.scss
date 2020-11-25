@@ -7,18 +7,22 @@
   padding: 20px;
 
   .dish-info {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    align-items: center;
 
-    .dish-name {
-      font-size: 45px;
-    }
+    .dish-info-line {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
 
-    .dish-price {
-      color: #D32F2F;
-      font-weight: bold;
+      .dish-name {
+        font-size: 45px;
+      }
+
+      .dish-price {
+        color: #D32F2F;
+        font-weight: bold;
+      }
     }
   }
 
