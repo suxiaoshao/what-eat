@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #66bb6a, #a8dda8);
+    background: linear-gradient(to bottom, #D32F2F, #FF5252);
 
     .src {
       width: 400px;
@@ -63,10 +63,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #eF3232;
+      color: #F4F6F9;
 
       .button-content {
         font-size: 40px;
       }
+    }
+
+    .button-hover {
+      background-color: #D32F2F;
     }
   }
 }

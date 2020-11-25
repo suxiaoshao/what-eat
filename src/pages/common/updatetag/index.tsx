@@ -1,7 +1,7 @@
 import { Button, Picker, View } from '@tarojs/components';
 import * as React from 'react';
-import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore } from 'taro-ui';
-import { usePullDownRefresh, useRouter } from '@tarojs/taro';
+import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore, AtMessage } from 'taro-ui';
+import { atMessage, usePullDownRefresh, useRouter } from '@tarojs/taro';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
@@ -15,7 +15,15 @@ export default function UpdateTag() {
   const router = useRouter<{ mode: string }>();
   const [mode, setMode] = React.useState<number>(0);
   React.useEffect(() => {
-    setMode(Number(router.params.mode));
+    if (router.params.mode === undefined) {
+      atMessage({
+        message: '标记喜欢标签来推荐,忌口标签筛选推荐',
+        type: 'error',
+      });
+      setMode(0);
+    } else {
+      setMode(Number(router.params.mode));
+    }
   }, [router]);
   const [fn, loading, errorString, userTagList, setTagList] = useAsyncFunc(async () => {
     return await getUserInfo(userId);
@@ -43,6 +51,7 @@ export default function UpdateTag() {
   }, [userTagList]);
   return (
     <View className='update-tag'>
+      <AtMessage />
       <Picker
         className='update-tag-top'
         value={mode}

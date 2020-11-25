@@ -1,5 +1,5 @@
 import { Text, View } from '@tarojs/components';
-import { getMenuButtonBoundingClientRect, getSystemInfoSync, navigateBack, navigateTo } from '@tarojs/taro';
+import { navigateBack, navigateTo } from '@tarojs/taro';
 import * as React from 'react';
 import { AtIcon } from 'taro-ui';
 import { useUserId } from '../../../../util/store/user';
@@ -7,6 +7,7 @@ import './window-Navigation.scss';
 import { postUpdateMarkedWindow } from '../../../../util/http/postUpdateMarkedWindow';
 import MyIcon from '../../../../components/myIcon';
 import { httpToast } from '../../../../util/http/httpToast';
+import { useButtonRect, useStatusBarHeight } from '../../../../util/store/size';
 
 export default function WindowNavigation(props: {
   className: string;
@@ -16,8 +17,8 @@ export default function WindowNavigation(props: {
   windowName: string | undefined;
   onChangeMarked: (value: boolean) => void;
 }): JSX.Element {
-  const [statusBarHeight] = React.useState<number>(getSystemInfoSync().statusBarHeight);
-  const [buttonRect] = React.useState<getMenuButtonBoundingClientRect.Rect>(getMenuButtonBoundingClientRect());
+  const [statusBarHeight] = useStatusBarHeight();
+  const [buttonRect] = useButtonRect();
   const [userId] = useUserId();
   return (
     <View className='navigation'>

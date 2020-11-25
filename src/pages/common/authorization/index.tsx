@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, Button, Text } from '@tarojs/components';
+import { Button, Image, Text, View } from '@tarojs/components';
 import { reLaunch } from '@tarojs/taro';
 import './index.scss';
 import { ThisUserInfo, useUserInfo } from '../../../util/store/user';
@@ -29,8 +29,8 @@ export default function Index(): JSX.Element {
         <Button
           className='button'
           size='default'
-          type='primary'
           openType='getUserInfo'
+          hoverClass='button-hover'
           onGetUserInfo={(e) => {
             if (e.detail.userInfo !== undefined) {
               const userInfo: ThisUserInfo = {
@@ -38,7 +38,7 @@ export default function Index(): JSX.Element {
                 userName: e.detail.userInfo.nickName,
               };
               setUserInfo(userInfo);
-              reLaunch({ url: '/pages/index/index' });
+              reLaunch({ url: '/pages/index/index' }).then();
             }
           }}
         >

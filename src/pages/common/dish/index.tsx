@@ -1,7 +1,7 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
 import { AtLoadMore } from 'taro-ui';
-import { navigateTo, usePullDownRefresh, useRouter } from '@tarojs/taro';
+import { navigateTo, usePullDownRefresh, useRouter, useShareAppMessage,useShareTimeline } from '@tarojs/taro';
 import './index.scss';
 import { getDishInfo, GetDishInfoData } from '../../../util/http/getDishInfo';
 import { useUserId } from '../../../util/store/user';
@@ -29,6 +29,17 @@ export default function Dish() {
   }, [fn]);
   usePullDownRefresh(() => {
     fn();
+  });
+  useShareAppMessage((payload) => {
+    console.log(payload);
+    return {
+      title: `「${dishData.windowName}」的「${dishData.dishName}」很不错呦~`,
+    };
+  });
+  useShareTimeline(() => {
+    return {
+      title: `「${dishData.windowName}」的「${dishData.dishName}」很不错呦~`,
+    };
   });
   return (
     <View className='dish'>
