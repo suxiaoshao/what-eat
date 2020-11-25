@@ -1,6 +1,6 @@
 import { request } from '@tarojs/taro';
 
-const httpBaseUrl = 'http://www.what-to-eat.top';
+const httpBaseUrl = 'https://www.what-to-eat.top';
 
 export const errorInfo = {
   '-1': '系统繁忙',

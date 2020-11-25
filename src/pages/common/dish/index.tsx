@@ -1,7 +1,7 @@
 import { View } from '@tarojs/components';
 import * as React from 'react';
-import { AtLoadMore } from 'taro-ui';
-import { navigateTo, usePullDownRefresh, useRouter, useShareAppMessage,useShareTimeline } from '@tarojs/taro';
+import { AtLoadMore, AtTag } from 'taro-ui';
+import { navigateTo, usePullDownRefresh, useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import './index.scss';
 import { getDishInfo, GetDishInfoData } from '../../../util/http/getDishInfo';
 import { useUserId } from '../../../util/store/user';
@@ -54,20 +54,32 @@ export default function Dish() {
       ) : (
         <React.Fragment>
           <View className='dish-info'>
-            <View>
+            <View className='dish-info-line'>
               <View className='dish-name'>{dishData.dishName}</View>
+              <MyIcon
+                value='feedback'
+                size={30}
+                color='#78909C'
+                onClick={() => {
+                  navigateTo({
+                    url: `/pages/common/feedback/index?windowName=${dishData.windowName}&dishName=${dishData.dishName}`,
+                  }).then();
+                }}
+              />
+            </View>
+            <View className='dish-info-line'>
+              <AtTag
+                active
+                size='small'
+                className='dish-window'
+                onClick={() => {
+                  navigateTo({ url: `/pages/common/window/index?windowId=${dishData.windowId}` }).then();
+                }}
+              >
+                {dishData.windowName}
+              </AtTag>
               <View className='dish-price'>{dishData.price}元</View>
             </View>
-            <MyIcon
-              value='error'
-              size={30}
-              color='#78909C'
-              onClick={() => {
-                navigateTo({
-                  url: `/pages/common/feedback/index?windowName=${dishData.windowName}&dishName=${dishData.dishName}`,
-                }).then();
-              }}
-            />
           </View>
           <DishScore {...dishData} />
           <DishTagList

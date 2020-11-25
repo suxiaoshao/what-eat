@@ -4,9 +4,22 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 50px;
+  align-items: center;
 
   .dish-tag-item {
     margin-top: 20px;
     margin-right: 20px;
+    margin-left: 0;
+  }
+
+  .dish-tag-add {
+    border-radius: 40px;
+  }
+
+  .dish-tag-add-hover {
+    background-color: #E0E0E0;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 40px;
   }
 }
