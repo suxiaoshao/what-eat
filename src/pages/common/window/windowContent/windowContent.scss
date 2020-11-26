@@ -2,6 +2,8 @@
   display: flex;
   flex: 1 1 0;
   width: 100%;
+  max-height: calc(100% - 220px);
+  overflow: hidden;
 
   .window-tag-list {
     flex: 0 0 20vw;

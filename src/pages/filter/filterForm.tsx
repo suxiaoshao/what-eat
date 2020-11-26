@@ -57,7 +57,6 @@ export default function FilterForm(props: {
               type='primary'
               onClick={() => {
                 const newValue = [...props.tagList].filter((item) => item !== value);
-                console.log(newValue);
                 if (newValue.length === 0) {
                   props.onTagListChange(undefined);
                 } else {

@@ -1,4 +1,4 @@
-import { httpGet } from './main';
+import { httpPost } from './main';
 
 export interface UserSearchData {
   searchList: {
@@ -60,5 +60,5 @@ export async function getUserSearch(
       canteenId: canteenId,
     };
   }
-  return await httpGet<UserSearchData, UserSearchQuery>('/user/search', queryData);
+  return await httpPost<UserSearchData, UserSearchQuery>('/user/search', queryData);
 }

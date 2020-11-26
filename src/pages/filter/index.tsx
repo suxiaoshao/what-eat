@@ -9,10 +9,11 @@ import { useAsyncFunc } from '../../util/hook/useAsyncFunc';
 import { getUserSearch } from '../../util/http/getUserSearch';
 import FilterForm from './filterForm';
 import WindowCard from '../../components/windowCard/windowCard';
+import { useFilterCanteenId } from '../../util/store/filter';
 
 export default function Index(): JSX.Element {
+  const [canteenId, setCanteenId] = useFilterCanteenId();
   const [searchContent, setSearchContent] = React.useState<string>('');
-  const [canteenId, setCanteenId] = React.useState<number | undefined>(undefined);
   const [tagList, setTagList] = React.useState<number[] | undefined>(undefined);
   const [fn, loading, errorString, searchData] = useAsyncFunc(
     async () => {
@@ -21,6 +22,9 @@ export default function Index(): JSX.Element {
     [searchContent, canteenId, tagList],
     [undefined, undefined, { searchList: [] }],
   );
+  React.useEffect(() => {
+    fn();
+  }, [canteenId, tagList]);
   usePullDownRefresh(() => {
     fn();
   });
@@ -42,11 +46,9 @@ export default function Index(): JSX.Element {
             canteenId={canteenId}
             onCanteenIdChange={(value) => {
               setCanteenId(value);
-              fn();
             }}
             onTagListChange={(value) => {
               setTagList(value);
-              fn();
             }}
           />
           <View className='filter-data-list'>

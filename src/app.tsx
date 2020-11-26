@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getUserInfo, login, redirectTo } from '@tarojs/taro';
+import { getUserInfo, login, redirectTo,navigateTo } from '@tarojs/taro';
 import './app.scss';
 import { ThisUserInfo, useUserId, useUserInfo } from './util/store/user';
 import { postUserlogin } from './util/http/postUserlogin';
@@ -36,7 +36,7 @@ function App(props: { children: React.ReactNode }) {
       .then((data) => {
         setUserId(data.userId);
         if (!data.hasRegistered) {
-          return redirectTo({ url: '/pages/common/updateTag/index' });
+          return navigateTo({ url: '/pages/common/updateTag/index' });
         }
       });
 
