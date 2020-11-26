@@ -5,12 +5,12 @@
   flex-direction: column;
 
   .index-tab {
-    flex: 0 0 76rpx;
+    flex: 0 0 76px;
   }
 
   .index-main {
     flex: 1 1 0;
-    max-height: calc(100% - 76rpx);
+    max-height: calc(100% - 76px);
 
     .index-list {
       height: 100%;
