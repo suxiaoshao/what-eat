@@ -7,6 +7,18 @@ import { getCanteenCrowded } from '../../../util/http/getCanteenCrowded';
 import './canteenInfo.scss';
 import { useFilterCanteenId } from '../../../util/store/filter';
 
+const imageMap = {
+  朝阳餐厅: 5,
+  丁香园一楼: 7,
+  丁香园二楼: 8,
+  玫瑰园二楼: 2,
+  京元餐厅: 6,
+  玫瑰园一楼: 1,
+  紫荆园一楼: 3,
+  紫荆园二楼: 4,
+  教职工食堂: 9,
+};
+
 export default function CanteenList(props: { none: boolean }): JSX.Element {
   const [fn, loading, errorString, canteenData] = useAsyncFunc(getCanteenCrowded);
   const [, setCanteenId] = useFilterCanteenId();
@@ -36,7 +48,7 @@ export default function CanteenList(props: { none: boolean }): JSX.Element {
               arrow='right'
               key={value.canteenId}
               note={value.status}
-              thumb={require('../../../assets/canteen/' + value.canteenName + '.svg')}
+              thumb={require(`../../../assets/canteen/${imageMap[value.canteenName]}.svg`)}
             />
           ))}
         </AtList>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
 import { AtLoadMore } from 'taro-ui';
-import { usePullDownRefresh } from '@tarojs/taro';
+import {usePullDownRefresh, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
 import './index.scss';
 import Taber from '../../components/tabar/taber';
 import FilterNavigation from './navigation/filterNavigation';
@@ -23,11 +23,23 @@ export default function Index(): JSX.Element {
     [undefined, undefined, { searchList: [] }],
   );
   React.useEffect(() => {
-    fn();
+    if(!(canteenId===undefined && tagList===undefined && searchContent==="")){
+      fn();
+    }
   }, [canteenId, tagList]);
   usePullDownRefresh(() => {
     fn();
   });
+  useShareTimeline(()=>{
+    return{
+      imageUrl:require("../../assets/mini.png")
+    }
+  })
+  useShareAppMessage(()=>{
+    return {
+      imageUrl:require("../../assets/mini.png")
+    }
+  })
   return (
     <Taber className='filter'>
       <FilterNavigation

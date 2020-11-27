@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import {useShareTimeline,useShareAppMessage} from '@tarojs/taro'
 import { AtTabs } from 'taro-ui';
 import { View } from '@tarojs/components';
 import './index.scss';
@@ -9,6 +10,16 @@ import CanteenList from './canteenInfo/canteenList';
 
 export default function Index(): JSX.Element {
   const [tab, setTab] = useState<number>(0);
+  useShareTimeline(()=>{
+    return{
+      imageUrl:require("../../assets/mini.png")
+    }
+  })
+  useShareAppMessage(()=>{
+    return {
+      imageUrl:require("../../assets/mini.png")
+    }
+  })
   return (
     <Taber className='index'>
       <AtTabs
