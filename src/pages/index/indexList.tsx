@@ -18,7 +18,9 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
     }
   }, [fn]);
   usePullDownRefresh(() => {
-    fn();
+    if (!props.none) {
+      fn();
+    }
   });
   return (
     <View style={props.none ? { display: 'none' } : undefined} className='index-list'>

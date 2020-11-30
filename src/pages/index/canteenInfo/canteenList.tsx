@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
-import { switchTab } from '@tarojs/taro';
+import { switchTab, usePullDownRefresh } from '@tarojs/taro';
 import { AtList, AtListItem, AtLoadMore } from 'taro-ui';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import { getCanteenCrowded } from '../../../util/http/getCanteenCrowded';
 import './canteenInfo.scss';
 import { useFilterCanteenId } from '../../../util/store/filter';
-
-const imageMap = {
-  朝阳餐厅: 5,
-  丁香园一楼: 7,
-  丁香园二楼: 8,
-  玫瑰园二楼: 2,
-  京元餐厅: 6,
-  玫瑰园一楼: 1,
-  紫荆园一楼: 3,
-  紫荆园二楼: 4,
-  教职工食堂: 9,
-};
 
 export default function CanteenList(props: { none: boolean }): JSX.Element {
   const [fn, loading, errorString, canteenData] = useAsyncFunc(getCanteenCrowded);
@@ -25,6 +13,11 @@ export default function CanteenList(props: { none: boolean }): JSX.Element {
   React.useEffect(() => {
     fn();
   }, [fn]);
+  usePullDownRefresh(() => {
+    if (!props.none) {
+      fn();
+    }
+  });
   return (
     <View className='canteen-list' style={props.none ? { display: 'none' } : undefined}>
       {loading || errorString != undefined ? (
@@ -48,7 +41,7 @@ export default function CanteenList(props: { none: boolean }): JSX.Element {
               arrow='right'
               key={value.canteenId}
               note={value.status}
-              thumb={require(`../../../assets/canteen/${imageMap[value.canteenName]}.svg`)}
+              thumb={require(`../../../assets/canteen/${value.canteenId}.svg`)}
             />
           ))}
         </AtList>
