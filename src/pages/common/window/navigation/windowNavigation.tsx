@@ -1,5 +1,5 @@
 import { Text, View } from '@tarojs/components';
-import { navigateBack, navigateTo } from '@tarojs/taro';
+import { navigateBack, navigateTo, switchTab } from '@tarojs/taro';
 import * as React from 'react';
 import { AtIcon } from 'taro-ui';
 import { useUserId } from '../../../../util/store/user';
@@ -36,14 +36,19 @@ export default function WindowNavigation(props: {
             value='chevron-left'
             color='#ffffff'
             onClick={() => {
-              navigateBack().then();
+              navigateBack({ delta: 1 })
+                .then()
+                .catch((e) => {
+                  switchTab({ url: '/pages/index/index' }).then();
+                });
             }}
+            size={30}
           />
           {props.windowName ? <Text className='navigation-title'>{props.windowName}</Text> : undefined}
           <View className='navigation-right-icon'>
             <MyIcon
               value='new-releases'
-              size={26}
+              size={30}
               color='#FFE0B2'
               onClick={() => {
                 navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
@@ -51,7 +56,7 @@ export default function WindowNavigation(props: {
             />
             {props.windowName ? (
               <MyIcon
-                size={26}
+                size={30}
                 className='navigation-star'
                 value={props.isMarked ? 'star' : 'star-border'}
                 color='#FFAB40'

@@ -1,7 +1,7 @@
 import { Button, Picker, View } from '@tarojs/components';
 import * as React from 'react';
 import { AtButton, AtDivider, AtList, AtListItem, AtLoadMore, AtMessage } from 'taro-ui';
-import { atMessage, navigateTo, usePullDownRefresh, useRouter } from '@tarojs/taro';
+import { atMessage, navigateBack, usePullDownRefresh, useRouter } from '@tarojs/taro';
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
@@ -133,7 +133,11 @@ export default function UpdateTag() {
                 httpToast(async () => {
                   return await postUserUpdateInfo(userId, userTagList.preferredList, userTagList.avoidList);
                 }, '成功更新').then(() => {
-                  fn();
+                  if (router.params.mode === undefined) {
+                    navigateBack().then();
+                  } else {
+                    fn();
+                  }
                 });
               }}
             >

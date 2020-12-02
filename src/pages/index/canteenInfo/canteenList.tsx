@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View } from '@tarojs/components';
-import { switchTab } from '@tarojs/taro';
+import { switchTab, usePullDownRefresh } from '@tarojs/taro';
 import { AtList, AtListItem, AtLoadMore } from 'taro-ui';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
 import { getCanteenCrowded } from '../../../util/http/getCanteenCrowded';
@@ -13,6 +13,11 @@ export default function CanteenList(props: { none: boolean }): JSX.Element {
   React.useEffect(() => {
     fn();
   }, [fn]);
+  usePullDownRefresh(() => {
+    if (!props.none) {
+      fn();
+    }
+  });
   return (
     <View className='canteen-list' style={props.none ? { display: 'none' } : undefined}>
       {loading || errorString != undefined ? (
@@ -36,7 +41,7 @@ export default function CanteenList(props: { none: boolean }): JSX.Element {
               arrow='right'
               key={value.canteenId}
               note={value.status}
-              thumb={require('../../../assets/canteen/' + value.canteenName + '.svg')}
+              thumb={require(`../../../assets/canteen/${value.canteenId}.svg`)}
             />
           ))}
         </AtList>

@@ -36,5 +36,7 @@ const config: Config = {
     ],
     custom: true,
   },
+  enableShareAppMessage: true,
+  enableShareTimeline: true,
 };
 export default config;

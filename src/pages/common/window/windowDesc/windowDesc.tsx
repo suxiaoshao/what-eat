@@ -1,4 +1,4 @@
-import { Text, View, Image } from '@tarojs/components';
+import { Image, Text, View } from '@tarojs/components';
 import * as React from 'react';
 import { AtFloatLayout } from 'taro-ui';
 import './windowDesc.scss';
@@ -19,7 +19,7 @@ export default function WindowDesc(props: {
           <Text className='window-desc-title'>{props.windowName}</Text>
           <View className='window-desc-canteen-star'>
             <Text className='window-desc-canteen'>{props.canteenName}</Text>
-            <Text className='window-desc-star'>{props.star}分</Text>
+            <Text className='window-desc-star'>{props.star.toFixed(1)}分</Text>
           </View>
         </View>
         <Image className='window-desc-top-image' src={props.pngSrc} />
