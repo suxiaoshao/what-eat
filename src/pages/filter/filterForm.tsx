@@ -4,7 +4,8 @@ import { AtButton, AtDivider, AtFloatLayout } from 'taro-ui';
 import MyIcon from '../../components/myIcon';
 import { useCanteenList, useTagList } from '../../util/store/system';
 import { CanteenData } from '../../util/http/getSystemInfo';
-import { TagData } from '../../util/http/getUserInfo';
+import { AllTagData } from '../../util/http/getUserInfo';
+import TagInfo from '../../components/tagInfo/tagInfo';
 
 export default function FilterForm(props: {
   canteenId: number | undefined;
@@ -22,7 +23,7 @@ export default function FilterForm(props: {
   const canteenIndex = React.useMemo<number>(() => {
     return allCanteenList.findIndex((value) => value.canteenId === props.canteenId);
   }, [allCanteenList, props.canteenId]);
-  const unTagList = React.useMemo<TagData[]>(() => {
+  const unTagList = React.useMemo<AllTagData[]>(() => {
     return tagList.filter((value) => !props.tagList?.some((item) => item === value.tagId));
   }, [props.tagList, tagList]);
   return (
@@ -49,12 +50,13 @@ export default function FilterForm(props: {
         className='filter-form-tag'
       >
         <AtDivider>已选中的标签</AtDivider>
-        <View className='filter-form-se-tag'>
+        <View className='filter-form-tag-list'>
           {props.tagList?.map((value) => (
             <AtButton
               size='small'
               key={value}
               type='primary'
+              className='filter-form-tag-item'
               onClick={() => {
                 const newValue = [...props.tagList].filter((item) => item !== value);
                 if (newValue.length === 0) {
@@ -69,11 +71,10 @@ export default function FilterForm(props: {
           ))}
         </View>
         <AtDivider>未选中的标签</AtDivider>
-        <View className='filter-form-un-tag'>
+        <View className='filter-form-tag-list'>
           {unTagList.map((value) => (
-            <AtButton
-              size='small'
-              key={value.tagId}
+            <TagInfo
+              {...value}
               onClick={() => {
                 if (props.tagList === undefined) {
                   props.onTagListChange([value.tagId]);
@@ -83,9 +84,8 @@ export default function FilterForm(props: {
                   props.onTagListChange(newValue);
                 }
               }}
-            >
-              {value.tagName}
-            </AtButton>
+              key={value.tagId}
+            />
           ))}
         </View>
       </AtFloatLayout>

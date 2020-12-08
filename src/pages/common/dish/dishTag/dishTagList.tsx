@@ -1,14 +1,15 @@
-import {AtBadge, AtButton, AtFloatLayout} from 'taro-ui';
-import {View} from '@tarojs/components';
+import { AtBadge, AtButton, AtFloatLayout } from 'taro-ui';
+import { View } from '@tarojs/components';
 import * as React from 'react';
-import {DishTag} from '../../../../util/http/getDishInfo';
+import { DishTag } from '../../../../util/http/getDishInfo';
 import './dishTag.scss';
-import {useUserId} from '../../../../util/store/user';
-import {postDishUpdateDishTag, PostDishUpdateDishTagData} from '../../../../util/http/postDishUpdateDishTag';
-import {httpToast} from '../../../../util/http/httpToast';
-import {useTagList} from '../../../../util/store/system';
+import { useUserId } from '../../../../util/store/user';
+import { postDishUpdateDishTag, PostDishUpdateDishTagData } from '../../../../util/http/postDishUpdateDishTag';
+import { httpToast } from '../../../../util/http/httpToast';
+import { useTagList } from '../../../../util/store/system';
 import MyIcon from '../../../../components/myIcon';
-import {TagData} from '../../../../util/http/getUserInfo';
+import { AllTagData } from '../../../../util/http/getUserInfo';
+import TagInfo from '../../../../components/tagInfo/tagInfo';
 
 export default function DishTagList(props: {
   tagList: DishTag[];
@@ -23,7 +24,7 @@ export default function DishTagList(props: {
     return props.tagList.filter((value) => value.tagNum > 0);
   }, [props.tagList]);
   // 未被选择的tag
-  const unTagList = React.useMemo<TagData[]>(() => {
+  const unTagList = React.useMemo<AllTagData[]>(() => {
     return allTagList.filter((value) => !tagList.some((value1) => value1.tagId === value.tagId));
   }, [allTagList, tagList]);
   return (
@@ -77,10 +78,8 @@ export default function DishTagList(props: {
         <View className='dish-tag-list'>
           {unTagList.map((value) => {
             return (
-              <AtButton
-                key={value.tagId}
-                size='small'
-                className='dish-tag-item'
+              <TagInfo
+                {...value}
                 onClick={() => {
                   httpToast(async () => {
                     return await postDishUpdateDishTag(userId, props.dishId, value.tagId);
@@ -89,9 +88,8 @@ export default function DishTagList(props: {
                     props.onUpdateDishTag(newValue);
                   });
                 }}
-              >
-                {value.tagName}
-              </AtButton>
+                key={value.tagId}
+              />
             );
           })}
         </View>

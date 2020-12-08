@@ -42,7 +42,7 @@ export default function Index(): JSX.Element {
             }}
           >
             <MyIcon color='#616161' value='feedback' size={40} />
-            <Text className='grid-text'>反馈</Text>
+            <Text className='grid-text'>系统反馈</Text>
           </View>
         </View>
       </View>

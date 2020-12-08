@@ -14,19 +14,19 @@ import { useFilterCanteenId } from '../../util/store/filter';
 export default function Index(): JSX.Element {
   const [canteenId, setCanteenId] = useFilterCanteenId();
   const [searchContent, setSearchContent] = React.useState<string>('');
-  const [tagList, setTagList] = React.useState<number[] | undefined>(undefined);
+  const [tagFilterList, setTagFilterList] = React.useState<number[] | undefined>(undefined);
   const [fn, loading, errorString, searchData] = useAsyncFunc(
     async () => {
-      return await getUserSearch(searchContent, tagList, canteenId);
+      return await getUserSearch(searchContent, tagFilterList, canteenId);
     },
-    [searchContent, canteenId, tagList],
+    [searchContent, canteenId, tagFilterList],
     [undefined, undefined, { searchList: [] }],
   );
   React.useEffect(() => {
-    if(!(canteenId===undefined && tagList===undefined && searchContent==="")){
+    if(!(canteenId===undefined && tagFilterList===undefined && searchContent==="")){
       fn();
     }
-  }, [canteenId, tagList]);
+  }, [canteenId, tagFilterList]);
   usePullDownRefresh(() => {
     fn();
   });
@@ -54,13 +54,13 @@ export default function Index(): JSX.Element {
       >
         <view className='filter-content'>
           <FilterForm
-            tagList={tagList}
+            tagList={tagFilterList}
             canteenId={canteenId}
             onCanteenIdChange={(value) => {
               setCanteenId(value);
             }}
             onTagListChange={(value) => {
-              setTagList(value);
+              setTagFilterList(value);
             }}
           />
           <View className='filter-data-list'>
