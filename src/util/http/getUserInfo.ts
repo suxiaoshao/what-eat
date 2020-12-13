@@ -1,6 +1,12 @@
 import { httpGet } from './main';
 
-export interface TagData {
+export interface AllTagData {
+  tagId: number;
+  tagName: string;
+  tagNum: number;
+}
+
+export interface TagData{
   tagId: number;
   tagName: string;
 }

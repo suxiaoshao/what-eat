@@ -48,22 +48,24 @@ export default function WindowContent(props: { tags: Tag[]; dishes: DishItem[] }
           );
         })}
       </View>
-      <AtList className='window-dish-list'>
-        {dishList?.map((value) => {
-          return (
-            <AtListItem
-              key={value.dishId}
-              title={value.dishName}
-              note={`${value.price}元`}
-              extraText={`${Number(value.star).toFixed(1)}分`}
-              arrow='right'
-              onClick={() => {
-                navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();
-              }}
-            />
-          );
-        })}
-      </AtList>
+      <View className='window-dish-list'>
+        <AtList>
+          {dishList?.map((value) => {
+            return (
+              <AtListItem
+                key={value.dishId}
+                title={value.dishName}
+                note={`${value.price}元`}
+                extraText={`${Number(value.star).toFixed(1)}分`}
+                arrow='right'
+                onClick={() => {
+                  navigateTo({ url: `/pages/common/dish/index?dishId=${value.dishId}` }).then();
+                }}
+              />
+            );
+          })}
+        </AtList>
+      </View>
     </View>
   );
 }

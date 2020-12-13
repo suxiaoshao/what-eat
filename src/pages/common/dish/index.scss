@@ -1,6 +1,6 @@
 .dish {
   background-color: #F4F6F9;
-  height: 100vh;
+  height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   align-items: center;

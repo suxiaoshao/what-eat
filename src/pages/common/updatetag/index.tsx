@@ -5,10 +5,12 @@ import { atMessage, navigateBack, usePullDownRefresh, useRouter } from '@tarojs/
 import './index.scss';
 import { useUserId } from '../../../util/store/user';
 import { useAsyncFunc } from '../../../util/hook/useAsyncFunc';
-import { getUserInfo, TagData } from '../../../util/http/getUserInfo';
+import { AllTagData, getUserInfo } from '../../../util/http/getUserInfo';
 import MyIcon from '../../../components/myIcon';
 import { httpToast } from '../../../util/http/httpToast';
 import { postUserUpdateInfo } from '../../../util/http/postUserUpdateInfo';
+import { useTagList } from '../../../util/store/system';
+import TagInfo from '../../../components/tagInfo/tagInfo';
 
 export default function UpdateTag() {
   const [userId] = useUserId();
@@ -25,7 +27,7 @@ export default function UpdateTag() {
       setMode(Number(router.params.mode));
     }
   }, [router]);
-  const [fn, loading, errorString, userTagList, setTagList] = useAsyncFunc(async () => {
+  const [fn, loading, errorString, userTagList, setUserTagList] = useAsyncFunc(async () => {
     return await getUserInfo(userId);
   }, [userId]);
   React.useEffect(() => {
@@ -35,20 +37,21 @@ export default function UpdateTag() {
     fn();
   });
   const [modeList] = React.useState<string[]>(['修改喜欢标签', '修改忌口标签']);
-  const preOtherList = React.useMemo<TagData[]>(() => {
-    return userTagList?.allList?.filter((item) => {
+  const [allTagList] = useTagList();
+  const preOtherList = React.useMemo<AllTagData[]>(() => {
+    return allTagList?.filter((item) => {
       return !userTagList?.preferredList?.some((value) => {
         return item.tagId === value.tagId;
       });
     });
-  }, [userTagList]);
-  const aviOtherList = React.useMemo<TagData[]>(() => {
-    return userTagList?.allList?.filter((item) => {
+  }, [allTagList, userTagList]);
+  const aviOtherList = React.useMemo<AllTagData[]>(() => {
+    return allTagList?.filter((item) => {
       return !userTagList?.avoidList?.some((value) => {
         return item.tagId === value.tagId;
       });
     });
-  }, [userTagList]);
+  }, [allTagList, userTagList]);
   return (
     <View className='update-tag'>
       <AtMessage />
@@ -96,7 +99,7 @@ export default function UpdateTag() {
                           return value.tagId != item.tagId;
                         });
                       }
-                      setTagList(newTagList);
+                      setUserTagList(newTagList);
                     }}
                   >
                     {item.tagName}
@@ -108,7 +111,8 @@ export default function UpdateTag() {
             <View className='update-tag-un-list'>
               {(mode === 0 ? preOtherList : aviOtherList).map((item) => {
                 return (
-                  <AtButton
+                  <TagInfo
+                    {...item}
                     onClick={() => {
                       const newTagList = { ...userTagList };
                       if (mode === 0) {
@@ -116,14 +120,10 @@ export default function UpdateTag() {
                       } else {
                         newTagList.avoidList.push(item);
                       }
-                      setTagList(newTagList);
+                      setUserTagList(newTagList);
                     }}
-                    className='update-tag-item'
-                    size='small'
                     key={item.tagId}
-                  >
-                    {item.tagName}
-                  </AtButton>
+                  />
                 );
               })}
             </View>

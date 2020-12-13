@@ -20,19 +20,17 @@
       }
 
       .filter-form-tag {
-        .filter-form-se-tag {
-          max-height: 50px;
-          flex: 0 0 auto;
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-        }
-
-        .filter-form-un-tag {
+        .filter-form-tag-list {
+          max-height: 300px;
           flex: 1 1 0;
           display: flex;
           justify-content: space-around;
           flex-wrap: wrap;
+          overflow: auto;
+
+          .filter-form-tag-item {
+            margin: 5px;
+          }
         }
       }
     }

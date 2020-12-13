@@ -1,5 +1,5 @@
 import { httpGet } from './main';
-import { TagData } from './getUserInfo';
+import { AllTagData } from './getUserInfo';
 
 export interface CanteenData {
   canteenId: number;
@@ -7,10 +7,14 @@ export interface CanteenData {
 }
 
 export interface SystemInfoData {
-  tags: TagData[];
+  tags: AllTagData[];
   canteens: CanteenData[];
 }
 
 export async function getSystemInfo(): Promise<SystemInfoData> {
-  return await httpGet<SystemInfoData, {}>('/system/getInfo', {});
+  const systemInfoData = await httpGet<SystemInfoData, {}>('/system/getInfo', {});
+  systemInfoData.tags = systemInfoData.tags.sort((a, b) => {
+    return b.tagNum - a.tagNum;
+  });
+  return systemInfoData;
 }

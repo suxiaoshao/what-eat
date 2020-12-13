@@ -1,6 +1,6 @@
-import { Image, Text, View } from '@tarojs/components';
+import {Image, Text, View} from '@tarojs/components';
 import * as React from 'react';
-import { AtFloatLayout } from 'taro-ui';
+import {AtFloatLayout} from 'taro-ui';
 import './windowDesc.scss';
 
 export default function WindowDesc(props: {
@@ -22,7 +22,7 @@ export default function WindowDesc(props: {
             <Text className='window-desc-star'>{props.star.toFixed(1)}分</Text>
           </View>
         </View>
-        <Image className='window-desc-top-image' src={props.pngSrc} />
+        <Image className='window-desc-top-image' src={props.pngSrc}/>
       </View>
       <View className='window-desc-desc'>{props.description}</View>
       <View
@@ -43,7 +43,7 @@ export default function WindowDesc(props: {
         <View className='window-desc-map-title'>描述</View>
         <View className='window-desc-map-content'>{props.description}</View>
         <View className='window-desc-map-title'>地图指引</View>
-        <Image src={props.mapSrc} className='window-desc-map-image' />
+        <Image mode='widthFix' src={props.mapSrc} className='window-desc-map-image' />
       </AtFloatLayout>
     </View>
   );

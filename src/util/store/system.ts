@@ -1,7 +1,7 @@
 import { createUseStoreFunc } from './store';
-import { TagData } from '../http/getUserInfo';
+import { AllTagData } from '../http/getUserInfo';
 import { CanteenData } from '../http/getSystemInfo';
 
-export const useTagList = createUseStoreFunc<TagData[]>([]);
+export const useTagList = createUseStoreFunc<AllTagData[]>([]);
 
 export const useCanteenList = createUseStoreFunc<CanteenData[]>([]);
