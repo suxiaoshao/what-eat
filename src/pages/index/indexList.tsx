@@ -33,7 +33,9 @@ export default function IndexList(props: { type: number; none: boolean }): JSX.E
           }}
         />
       ) : (
-        recommendData.windowList.map((value) => <WindowCard {...value} key={value.windowId} />)
+        recommendData.windowList.map((value, index) => (
+          <WindowCard {...value} rank={props.type === 2 ? index + 1 : undefined} key={value.windowId} />
+        ))
       )}
     </View>
   );

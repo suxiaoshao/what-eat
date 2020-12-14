@@ -15,7 +15,7 @@ interface WindowCardProps {
   canteenName: string;
 }
 
-export default function WindowCard(props: WindowCardProps): JSX.Element {
+export default function WindowCard(props: WindowCardProps & { rank?: number }): JSX.Element {
   return (
     <View
       className='window-card'
@@ -30,14 +30,20 @@ export default function WindowCard(props: WindowCardProps): JSX.Element {
         <View className='desc'>
           <View className='title-star'>
             <Text className='title'>{props.windowName}</Text>
-            <MyIcon
-              value='feedback'
-              color='#616161'
-              size={25}
-              onClick={() => {
-                navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
-              }}
-            />
+            {props.rank === undefined ? (
+              <MyIcon
+                value='feedback'
+                color='#616161'
+                size={25}
+                onClick={() => {
+                  navigateTo({ url: `/pages/common/feedback/index?windowName=${props.windowName}` }).then();
+                }}
+              />
+            ) : (
+              <AtTag type='primary' active={props.rank<=3}>
+                {props.rank}
+              </AtTag>
+            )}
           </View>
           <View className='title-star'>
             <Text className='canteen'>{props.canteenName}</Text>

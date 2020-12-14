@@ -4,8 +4,16 @@ export function httpToast<T>(func: () => Promise<T>, successString: string): Pro
   showLoading().then();
   return func()
     .then((value) => {
-      hideToast();
-      hideLoading();
+      hideToast({
+        fail:(res)=>{
+          console.log(res)
+        }
+      });
+      hideLoading({
+        fail:res => {
+          console.log(res)
+        }
+      });
       showToast({ title: successString }).then();
       return value;
     })
