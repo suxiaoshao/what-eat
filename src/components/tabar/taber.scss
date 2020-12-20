@@ -1,5 +1,4 @@
 .tab-bar-main {
-
   .page-main {
     height: calc(100vh - 136px);
   }
@@ -7,5 +6,7 @@
   .tab-tab {
     position: fixed;
     bottom: 0;
+    margin: 0;
+    height: 136px;
   }
 }
